@@ -1,0 +1,6 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Fri Nov 24 16:09:15 CST 2017
+ehcache-web-2.0.4.jar>=
+ehcache-web-2.0.4.pom>jeesite-repos=
+ehcache-web-2.0.4.jar>jeesite-repos=
+ehcache-web-2.0.4-sources.jar>jeesite-repos=
