@@ -36,7 +36,7 @@
 		<tbody>
 			<c:forEach items="${recds}" var="recd">
 				<tr>
-					<td><c:out value="" /></td>
+					<td>${recd.recordId}</td>
 					<td><c:out value="${recd.productId}" /></td>
 					<td><c:out value="${recd.salesmanId}" /></td>
 					<td><c:out value="${recd.number}" /></td>
