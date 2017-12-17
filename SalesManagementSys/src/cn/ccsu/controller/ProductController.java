@@ -21,11 +21,7 @@ public class ProductController {
 
 	}
 
-	@RequestMapping(value = "/addProduct", method = RequestMethod.GET)
-	public String addProduct() {
-		return "appendProduct";
-
-	}
+	
 
 	@RequestMapping(value = "/queryAllProducts")
 	public String queryAllProducts(Map<String, Object> map) {
@@ -39,7 +35,15 @@ public class ProductController {
 
 		service.addProduct(prdt);
 		map.put("message", "信息添加成功");
+		System.out.println("添加产品信息");
 		return "jump";
+	}
+	
+	
+	@RequestMapping(value = "/addProduct", method = RequestMethod.GET)
+	public String addProduct() {
+		return "appendProduct";
+
 	}
 
 	@RequestMapping(value = "/modifyProduct", method = RequestMethod.GET)

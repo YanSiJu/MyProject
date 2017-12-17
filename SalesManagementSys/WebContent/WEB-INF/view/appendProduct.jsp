@@ -48,7 +48,7 @@
 	</div>
 	<div id="section" style="border: 1px solid #999">
 		<h3 align="center">产品信息录入</h3>
-		<form action="">
+		<form action="${pageContext.request.contextPath}/product/addProduct"  method="post">
 			<!--<p align="center">产 品 ID&nbsp; <input type="number" name="productId" /></p>-->
 			<p align="center">
 				产品名称: <input type="text" name="productName" />

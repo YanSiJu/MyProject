@@ -17,7 +17,7 @@
 			height="40" />
 		</a>
 		
-	<form action="" style="text-align: center;">
+	<form action="${ pageContext.request.contextPath}/Salesman/querySalesman" style="text-align: center;">
 		销售员编号: <input type="text" name="id" />
 		 姓名: <input type="text"  name="name" />
 		性别 : <select name="sex">
@@ -26,7 +26,7 @@
 			</select> 
 		<input type="submit" value="查询" /> &emsp;&emsp;
 	</form>
-	</p>
+	
 	
 
 
@@ -42,7 +42,7 @@
 		<tbody>
 			<c:forEach items="${saleMan}" var="man">
 				<tr>
-					<td>$man.id}</td>
+					<td>${man.id}</td>
 					<td><c:out value="${man.name}" /></td>
 					<td><c:out value="${man.sex}" /></td>
 					<td><c:out value="${man.birth}" /></td>

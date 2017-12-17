@@ -14,6 +14,7 @@ public class SkipController {
 	
 	@RequestMapping("/jump")
 	public String jump() {
+		System.out.println("jump");
 		return "functionOptions";
 		
 	}

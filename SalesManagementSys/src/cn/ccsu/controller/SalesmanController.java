@@ -27,7 +27,7 @@ public class SalesmanController {
 
 	}
 
-	@RequestMapping(value = "/addSalesman", method = RequestMethod.POST)
+	@RequestMapping(value = "/addSalman", method = RequestMethod.POST)  //, method = RequestMethod.POST   method="post"
 	public String addSalesman(Map<String, Object> map, Salesman salman) {
 		service.addSalesman(salman);
 		map.put("message", "信息添加成功");
@@ -67,6 +67,7 @@ public class SalesmanController {
 		map.put("saleMan", saleMan);
 	}
 
+	@RequestMapping("/queryAllSalesman")
 	public String queryAllSalesman(Map<String, Object> map) {
 		putAllSalesman(map);
 		return "salesmanInfo";

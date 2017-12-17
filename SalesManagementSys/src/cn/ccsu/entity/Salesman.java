@@ -2,11 +2,15 @@ package cn.ccsu.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Salesman {
 
 	private String name;
 	private Integer id;
 	private String sex;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birth;
 
 	public Salesman(String name, Integer id, String sex, Date birth) {

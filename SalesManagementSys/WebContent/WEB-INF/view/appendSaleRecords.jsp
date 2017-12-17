@@ -49,7 +49,7 @@
 	<div id="section" style="border: 1px solid #999">
 		<h3 align="center">销售记录信息录入</h3>
 		<form
-			action="${pageContext.request.contextPath}/SalesRecord/addSalesRecord">
+			action="${pageContext.request.contextPath}/SalesRecord/addSalesRecord"  method="post">
 			<p align="center">
 				销售时间&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dateTime" />
 			</p>

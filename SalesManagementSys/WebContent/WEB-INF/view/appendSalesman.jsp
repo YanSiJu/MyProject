@@ -48,12 +48,12 @@
 	</div>
 	<div id="section" style="border: 1px solid #999">
 		<h3 align="center">销售员信息录入</h3>
-		<form action="">
+		<form action="${pageContext.request.contextPath}/Salesman/addSalman" method="post" >
 			<p align="center">
 				姓 名:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <input type="text" name="name" />
 			</p>
 			<p align="center">
-				出生日期:<input type="date" name="birth" />
+				出生日期:<input type="text" name="birth" />
 			</p>
 			<p align="center">
 				<input type="hidden" name="id" value="0" />
