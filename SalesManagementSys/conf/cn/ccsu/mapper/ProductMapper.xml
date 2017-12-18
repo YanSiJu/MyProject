@@ -12,7 +12,7 @@
 				id = #{id}
 			</if>
 			<if test="productName != null">
-				and productName like
+				or productName like
 				concat(concat('%',#{productName}),'%')
 			</if>
 		</where>
@@ -27,11 +27,12 @@
 	<!-- void deleteProduct(Integer id) -->
 	<delete id="deleteProduct">
 		delete from product
-		<where>
+		where id = #{id}
+		<!-- <where>
 			<if test="id != null">
 				id = #{id}
 			</if>
-		</where>
+		</where> -->
 	</delete>
 
 	<!-- int addProduct(Product product); -->

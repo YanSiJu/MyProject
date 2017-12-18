@@ -28,10 +28,10 @@
 				productId = #{productId}
 			</if>
 			<if test="salesmanId != null">
-				and salesmanId = #{salesmanId}
+				or salesmanId = #{salesmanId}
 			</if>
 			<if test="recordId != null">
-				and recordId = #{recordId}
+				or recordId = #{recordId}
 			</if>
 		</where>
 	</select>

@@ -5,16 +5,13 @@
 	<!-- void deleteSalesman(Integer id) -->
 	<delete id="deleteSalesman">
 		delete from salesman
-		<where>
-			<if test="id != null">
-				id = #{id}
-			</if>
-		</where>
+		where id = #{id}
+		<!-- <where> <if test="id != null"> id = #{id} </if> </where> -->
 	</delete>
 
 	<!-- List<Salesman> selectAllSalesman() -->
-	<select id="selectAllSalesman"  resultType="cn.ccsu.entity.Salesman">
-	select * from salesman
+	<select id="selectAllSalesman" resultType="cn.ccsu.entity.Salesman">
+		select * from salesman
 	</select>
 
 	<!-- int addSalesman(Salesman salman); -->

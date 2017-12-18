@@ -20,10 +20,7 @@
 	<form action="${ pageContext.request.contextPath}/Salesman/querySalesman" style="text-align: center;">
 		销售员编号: <input type="text" name="id" />
 		 姓名: <input type="text"  name="name" />
-		性别 : <select name="sex">
-			<option value="男">男</option>
-			<option value="女">女</option>
-			</select> 
+		性别 : <input type="text"  name="sex" />
 		<input type="submit" value="查询" /> &emsp;&emsp;
 	</form>
 	

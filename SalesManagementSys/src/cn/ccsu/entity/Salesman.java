@@ -12,7 +12,7 @@ public class Salesman {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birth;
-
+ 
 	public Salesman(String name, Integer id, String sex, Date birth) {
 		super();
 		this.name = name;

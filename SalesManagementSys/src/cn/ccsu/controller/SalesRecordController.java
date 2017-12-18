@@ -1,5 +1,7 @@
 package cn.ccsu.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,20 +23,28 @@ public class SalesRecordController {
 	}
 
 	// 增加销售记录
-	@RequestMapping(value="/addSalesRecord",method=RequestMethod.POST)
-	public String addSalesRecord(Map<String, Object> map,SalesRecord record) {
+	@RequestMapping(value = "/addSalesRecord", method = RequestMethod.POST)
+	public String addSalesRecord(Map<String, Object> map,
+			@RequestParam(value = "productId", required = false) Integer productId,
+			@RequestParam(value = "salesmanId", required = false) Integer salesmanId,
+			@RequestParam(value = "recordId", required = false) Integer recordId,
+			@RequestParam(value = "saleroom", required = false) Double saleroom,
+			@RequestParam(value = "dateTime", required = false) String dateTimeStr,
+			@RequestParam(value = "number", required = false) Integer number) {
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
+		SalesRecord record = new SalesRecord(productId, salesmanId, number, saleroom, recordId, dateTime);
 		service.addSalesRecord(record);
 		map.put("message", "信息添加成功");
 		return "jump";
 	}
-	
-	
-	
+
 	// 跳转到信息录入界面
-		@RequestMapping(value="/addSalesRecord",method=RequestMethod.GET)
-		public String addSalesRecord() {
-			return "appendSaleRecords";
-		}
+	@RequestMapping(value = "/addSalesRecord", method = RequestMethod.GET)
+	public String addSalesRecord() {
+		return "appendSaleRecords";
+	}
 
 	// 查询销售记录
 	@RequestMapping("/querySalesRecord")
@@ -47,7 +57,7 @@ public class SalesRecordController {
 		map.put("recds", salesRecordList);
 		return "salesInfo";
 	}
-	
+
 	@RequestMapping("/queryAllRecords")
 	public String queryAllRecords(Map<String, Object> map) {
 		putAllRecords(map);
@@ -58,10 +68,11 @@ public class SalesRecordController {
 		List<SalesRecord> list = service.queryAllRecords();
 		map.put("recds", list);
 	}
-	
+
 	// 跳转到修改数据界面
 	@RequestMapping(value = "/modifySalesRecord", method = RequestMethod.GET)
-	public String modifySalesRecord(Map<String, Object> map,@RequestParam(value = "recordId", required = false) Integer recordId) {
+	public String modifySalesRecord(Map<String, Object> map,
+			@RequestParam(value = "recordId", required = false) Integer recordId) {
 
 		// 根据recordId查询出销售员，并存到map中
 		List<SalesRecord> list = service.querySalesRecord(null, null, recordId);
@@ -74,7 +85,16 @@ public class SalesRecordController {
 
 	// 更新销售记录
 	@RequestMapping(value = "/modifySalesRecord", method = RequestMethod.POST)
-	public String modifySalesRecord(Map<String, Object> map, SalesRecord record) {
+	public String modifySalesRecord(Map<String, Object> map,
+			@RequestParam(value = "productId", required = false) Integer productId,
+			@RequestParam(value = "salesmanId", required = false) Integer salesmanId,
+			@RequestParam(value = "recordId", required = false) Integer recordId,
+			@RequestParam(value = "saleroom", required = false) Double saleroom,
+			@RequestParam(value = "dateTime", required = false) String dateTimeStr,
+			@RequestParam(value = "number", required = false) Integer number) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
+		SalesRecord record = new SalesRecord(productId, salesmanId, number, saleroom, recordId, dateTime);
 		service.modifySalesRecord(record);
 		map.put("message", "信息修改成功");
 		return "jump";
@@ -82,7 +102,8 @@ public class SalesRecordController {
 
 	// 删除销售记录
 	@RequestMapping("/deleteSalesRecord")
-	public String deleteSalesRecord(Map<String, Object> map, @RequestParam(value = "recordId", required = false) Integer recordId) {
+	public String deleteSalesRecord(Map<String, Object> map,
+			@RequestParam(value = "recordId", required = false) Integer recordId) {
 		service.deleteSalesRecord(recordId);
 		putAllRecords(map);
 		return "salesInfo";

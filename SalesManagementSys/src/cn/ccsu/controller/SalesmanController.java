@@ -1,5 +1,7 @@
 package cn.ccsu.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ public class SalesmanController {
 
 	}
 
-	@RequestMapping(value = "/addSalman", method = RequestMethod.POST)  //, method = RequestMethod.POST   method="post"
+	@RequestMapping(value = "/addSalman", method = RequestMethod.POST) // , method = RequestMethod.POST method="post"
 	public String addSalesman(Map<String, Object> map, Salesman salman) {
 		service.addSalesman(salman);
 		map.put("message", "信息添加成功");
@@ -40,7 +42,17 @@ public class SalesmanController {
 		// 根据ID查询出销售员，并存到map中
 		List<Salesman> list = service.querySalesman(null, id, null);
 		if (list != null && list.size() > 0) {
-			map.put("salman", list.get(0));
+
+			Salesman man = list.get(0);
+
+			Date date = man.getBirth();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String birth = sdf.format(date);
+			
+			
+			
+			map.put("birth", birth);
+			map.put("salman", man);
 		}
 		return "modifySalmanInfo";
 
@@ -57,7 +69,17 @@ public class SalesmanController {
 	public String querySalesman(Map<String, Object> map, @RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "id", required = false) Integer id,
 			@RequestParam(value = "sex", required = false) String sex) {
+
+		if (name.length() == 0) {
+			name = null;
+		}
+
+		if (sex.length() == 0) {
+			sex = null;
+		}
+
 		List<Salesman> salmanList = service.querySalesman(name, id, sex);
+		System.out.println("salmanList:" + salmanList);
 		map.put("saleMan", salmanList);
 		return "salesmanInfo";
 	}

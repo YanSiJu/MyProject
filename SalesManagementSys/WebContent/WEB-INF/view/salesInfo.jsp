@@ -14,7 +14,7 @@
 			src="${pageContext.request.contextPath}/img/add.png"   alt="添加销售记录" width="40"
 			height="40" />
 		</a>
-	<form action="" style="text-align: center;">
+	<form action="${pageContext.request.contextPath}/SalesRecord/querySalesRecord" style="text-align: center;">
 		销售员编号: <input type="text" name="salesmanId" /> 产品编号: <input
 			type="text" name="productId" /> <input type="submit" value="查询" />
 		&emsp;&emsp;

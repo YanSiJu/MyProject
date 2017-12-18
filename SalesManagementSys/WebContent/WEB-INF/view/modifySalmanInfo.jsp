@@ -51,7 +51,7 @@
 	</div>
 	<div id="section" style="border: 1px solid #999">
 		<h3 align="center">销售员信息录入</h3>
-		<form action="${pageContext.request.contextPath}/Salesman/modifySalesman">
+		<form action="${pageContext.request.contextPath}/Salesman/modifySalesman"  method="post">
 			<p align="center">
 				销售员编号:<input type="text" name="id" value="${ salman.id}"  readonly="readonly" />
 			</p>
@@ -60,7 +60,7 @@
 					value="${salman.name }" />
 			</p>
 			<p align="center">
-				出生日期:<input type="date" name="birth" value="${salman.birth }" />
+				出生日期:<input type="text" name="birth" value="${birth }" />
 			</p>
 			<p align="center">
 				<label>性&nbsp;别:</label> <input type="radio" name="sex" value="男"

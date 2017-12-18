@@ -49,7 +49,7 @@
 	<div id="section" style="border: 1px solid #999">
 		<h3 align="center">修改销售记录</h3>
 		<form
-			action="${pageContext.request.contextPath}/SalesRecord/modifySalesRecord">
+			action="${pageContext.request.contextPath}/SalesRecord/modifySalesRecord"  method="post">
 			<p align="center">
 				流水号:<input type="text" name="recordId" value="${recd.recordId }"  readonly="readonly" />
 			</p>

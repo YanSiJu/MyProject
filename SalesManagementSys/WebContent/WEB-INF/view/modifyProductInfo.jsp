@@ -51,7 +51,7 @@
 	</div>
 	<div id="section" style="border: 1px solid #999">
 		<h3 align="center">修改产品信息</h3>
-		<form action="product/modifyProduct">
+		<form action="${pageContext.request.contextPath}/product/modifyProduct"   method="post">
 			<!--<p align="center">产 品 ID&nbsp; <input type="number" name="productId" /></p>-->
 			<p align="center">
 				产品号: <input type="text" name="id" value="${product.id }"

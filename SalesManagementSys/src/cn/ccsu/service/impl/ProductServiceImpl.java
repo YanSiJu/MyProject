@@ -55,6 +55,7 @@ public class ProductServiceImpl implements IProductService {
 	@Override
 	public void deleteProduct(Integer id) {
 
+//		System.out.println("product id:" + id);
 		mapper.deleteProduct(id);
 	}
 

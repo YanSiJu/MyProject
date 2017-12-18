@@ -15,7 +15,7 @@
 			src="${pageContext.request.contextPath}/img/add.png" width="40"
 			height="40" alt="添加产品" />
 		</a>
-	<form action="" style="text-align: center;">
+	<form action="${pageContext.request.contextPath}/product/queryProduct" style="text-align: center;">
 		产品名称: <input type="text" name="productName" /> 产品编号: <input
 			type="text" name="id" /> <input type="submit" value="查询" />
 		&emsp;&emsp;
@@ -38,10 +38,10 @@
 					<td><c:out value="${product.productName}" /></td>
 					<td><c:out value="${product.price}" /></td>
 					<td><a
-						href="${pageContext.request.contextPath}/Product/modifyProduct?id=<c:out value="${product.id}"/>"
+						href="${pageContext.request.contextPath}/product/modifyProduct?id=<c:out value="${product.id}"/>"
 						target="_blank">修改</a></td>
 					<td><a
-						href="${pageContext.request.contextPath}/Product/deleteProduct?id=<c:out value="${product.id}"/>">删除</a></td>
+						href="${pageContext.request.contextPath}/product/deleteProduct?id=<c:out value="${product.id}"/>">删除</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

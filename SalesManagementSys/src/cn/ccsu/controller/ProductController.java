@@ -21,8 +21,6 @@ public class ProductController {
 
 	}
 
-	
-
 	@RequestMapping(value = "/queryAllProducts")
 	public String queryAllProducts(Map<String, Object> map) {
 
@@ -38,8 +36,7 @@ public class ProductController {
 		System.out.println("添加产品信息");
 		return "jump";
 	}
-	
-	
+
 	@RequestMapping(value = "/addProduct", method = RequestMethod.GET)
 	public String addProduct() {
 		return "appendProduct";
@@ -75,7 +72,9 @@ public class ProductController {
 	public String queryProduct(Map<String, Object> map,
 			@RequestParam(value = "productName", required = false) String productName,
 			@RequestParam(value = "id", required = false) Integer id) {
-
+		if (productName.length() == 0) {
+			productName = null;
+		}
 		List<Product> products = service.queryProduct(productName, id);
 		map.put("products", products);
 		return "productInfo";
