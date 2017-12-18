@@ -43,11 +43,11 @@
 	</div>
 	
 	
-	<a href="admin/login">进入功能选择</a>
+	<!-- <a href="admin/login">进入功能选择</a> -->
 	
 	<div id="section" style="border: 1px solid #999">
 		<h2 align="center">管理员登录</h2>
-		<form action="admin/login">
+		<form action="${pageContext.request.contextPath}/admin/login">
 			<p style="text-align: center;">
 				帐号: <input type="text" name="account" />
 			</p>
