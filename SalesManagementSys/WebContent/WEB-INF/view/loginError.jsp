@@ -13,7 +13,7 @@
 	<br>
 	<span id="show"></span>
 	<script>
-		var t = 7; //设定跳转的时间 
+		var t = 5; //设定跳转的时间 
 		function refer() {
 			if (t == 0) {
 				location = "${pageContext.request.contextPath}/index.jsp"; //#设定跳转的链接地址 

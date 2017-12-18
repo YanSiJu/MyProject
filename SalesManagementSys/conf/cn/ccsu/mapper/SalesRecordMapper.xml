@@ -13,6 +13,12 @@
 
 	</resultMap> -->
 	
+	<!-- SalesRecord selectSalesRecordById(Integer recordId) -->
+	<select id="selectSalesRecordById"
+	  resultType="cn.ccsu.entity.SalesRecord">
+	select * from salesRecord
+	where recordId = #{recordId}
+	</select>
 	
 	
 	<!-- List<SalesRecord> selectAllSalesRecords() -->
@@ -39,12 +45,13 @@
 
 	<!-- void deleteSalesRecord(Integer recordId) -->
 	<delete id="deleteSalesRecord">
-		delete from product
-		<where>
+		delete from salesRecord
+		where recordId = #{recordId}
+		<!-- <where>
 			<if test="recordId != null">
-				and recordId = #{recordId}
+				 recordId = #{recordId}
 			</if>
-		</where>
+		</where> -->
 	</delete>
 
 	<!-- void addSalesRecord(SalesRecord record); -->
@@ -57,7 +64,7 @@
 
 	<!--int updateSalesRecord(SalesRecord record); -->
 	<update id="updateSalesRecord">
-		update salesman
+		update salesRecord
 		<set>
 			<if test="productId != null">productId = #{productId},</if>
 			<if test="salesmanId != null">salesmanId = #{salesmanId},</if>

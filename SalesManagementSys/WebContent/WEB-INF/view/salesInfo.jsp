@@ -43,7 +43,7 @@
 					<td><c:out value="${recd.saleroom}" /></td>
 					<td><c:out value="${recd.dateTime}" /></td>
 					<td><a
-						href="${pageContext.request.contextPath}/SalesRecord/modifyProduct?recordId=<c:out value="${recd.recordId}"/>"   target="_blank">修改</a></td>
+						href="${pageContext.request.contextPath}/SalesRecord/modifySalesRecord?recordId=<c:out value="${recd.recordId}"/>"   target="_blank">修改</a></td>
 					<td><a
 						href="${pageContext.request.contextPath}/SalesRecord/deleteSalesRecord?recordId=<c:out value="${recd.recordId}"/>">删除</a></td>
 				</tr>

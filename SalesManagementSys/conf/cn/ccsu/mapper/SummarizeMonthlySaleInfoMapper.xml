@@ -8,12 +8,13 @@
 	<!-- List<SalesmanMonthlyRecord> querySalmanMonthlySaleRoom() -->
 	<select id="querySalmanMonthlySaleRoom" resultType="cn.ccsu.entity.SalesmanMonthlyRecord">
 		select
-		MonthlyRecord.salesmanId id,Salesman.name,sum(saleroom)
-		monthlySaleroom
+		MonthlyRecord.salesmanId
+		id,Salesman.name,MonthlyRecord.month,sum(saleroom) monthlySaleroom
 		from MonthlyRecord,Salesman
 		where Salesman.id =
 		MonthlyRecord.salesmanId
-		group by MonthlyRecord.salesmanId
+		group by
+		MonthlyRecord.salesmanId,MonthlyRecord.month
 	</select>
 
 	<!--List<ProductMonthlyRecord> queryProductMonthlySaleRoom() -->
@@ -25,7 +26,8 @@
 		MonthlyRecord,Product
 		where Product.id =
 		MonthlyRecord.productId
-		group by MonthlyRecord.productId
+		group by
+		MonthlyRecord.productId,MonthlyRecord.month
 	</select>
 
 

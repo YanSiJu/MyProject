@@ -12,7 +12,7 @@ public interface SalesRecordMapper {
 
 	// 查询销售记录
 	List<SalesRecord> selectSalesRecord(Map<String, Object> params);
-	
+
 	// 查询所有销售记录
 	List<SalesRecord> selectAllSalesRecords();
 
@@ -21,4 +21,7 @@ public interface SalesRecordMapper {
 
 	// 删除销售记录
 	void deleteSalesRecord(Integer recordId);
+
+	// 根据id查询销售记录
+	SalesRecord selectSalesRecordById(Integer recordId);
 }

@@ -54,20 +54,20 @@
 				流水号:<input type="text" name="recordId" value="${recd.recordId }"  readonly="readonly" />
 			</p>
 			<p align="center">
-				销售时间:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dateTime"  value="${recordId.dateTime }" />
+				销售时间:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dateTime"  value="${dateTime }"  readonly="readonly"/>
 			</p>
 			<p align="center">
-				销售员编号: <input type="text" name="salesmanId"  value="${recordId.salesmanId }" readonly="readonly"/>
+				销售员编号: <input type="text" name="salesmanId"  value="${recd.salesmanId }" readonly="readonly"/>
 			</p>
 			<p align="center">
 				产品号:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-					type="text" name="productId" value="${recordId.productId }"  readonly="readonly"/>
+					type="text" name="productId" value="${recd.productId }"  readonly="readonly"/>
 			</p>
 			<p align="center">
-				销售数量:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"   value="${salesmanId.number }" name="number" />
+				销售数量:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"   value="${recd.number }" name="number" />
 			</p>
 			<p align="center">
-				销售金额:<input type="hidden" name="saleroom" value="${salesmanId.saleroom }"   readonly="readonly"/>
+				销售金额:<input type="text" name="saleroom" value="${recd.saleroom }"   readonly="readonly"/>
 			</p>
 			<p align="center">
 				<input type="submit" value="修改记录" />

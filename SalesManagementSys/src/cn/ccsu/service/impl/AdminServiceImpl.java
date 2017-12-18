@@ -17,6 +17,8 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public boolean validateIdentify(String acc, String passwd) {
+		System.out.println("passwd:"+passwd+"  acc:"+acc);
+		System.out.println("admin:"+mapper.selectAdm(acc, passwd));
 		if (mapper.selectAdm(acc, passwd) != null) {
 			return true;
 		}

@@ -17,20 +17,25 @@ public class AdminController {
 	@Autowired
 	private IAdminService service;
 
-	@RequestMapping("/skip")
-	public String skip() {
-		return "functionOptions";
-	}
+	// @RequestMapping("/skip")
+	// public String skip() {
+	// return "functionOptions";
+	// }
 
 	@RequestMapping("/login")
 	public String login(@RequestParam(value = "account", required = false) String account,
 			@RequestParam(value = "password", required = false) String password) {
 
-		if (service.validateIdentify(account,password)) {
-			return "functionOptions";
-		} else {
-			return "loginError"; // 登录失败界面
+		if (account.length() == 0) {
+			account = null;
 		}
+		if (password.length() == 0) {
+			password = null;
+		}
+		if (service.validateIdentify(account, password)) {
+			return "functionOptions";
+		}
+		return "loginError"; // 登录失败界面
 
 	}
 }

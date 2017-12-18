@@ -28,16 +28,18 @@
 		<thead>
 			<tr>
 				<th>销&emsp;售&emsp;员&emsp;编&emsp;号</th>
-				<th>销&emsp;售&emsp;额</th>
 				<th>姓&emsp;名</th>
+				<th>月&emsp;份</th>
+				<th>销&emsp;售&emsp;额</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${salmanMonthlyRecds}" var="recd">
 				<tr>
 					<td>${recd.id}</td>
-					<td><c:out value="${recd.monthlySaleroom}" /></td>
 					<td><c:out value="${recd.name}" /></td>
+					<td><c:out value="${recd.month}" /></td>
+					<td><c:out value="${recd.monthlySaleroom}" /></td>
 					<%-- <td><a
 						href="${pageContext.request.contextPath}/SalesRecord/modifyProduct?recordId=<c:out value="${recd.recordId}"/>"
 						target="_blank">修改</a></td>

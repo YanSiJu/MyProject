@@ -25,7 +25,12 @@ public class Main {
 		System.out.println(date);
 	}
 	
-	
+	@Test
+	public void datetimeToString() {
+		LocalDateTime dateTime = LocalDateTime.now();
+		String newstring = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+		System.out.println(newstring);
+	}
 
 	@Test
 	public void test() {

@@ -21,7 +21,7 @@ public class SalesRecordServiceImpl implements ISalesRecordService {
 	private SalesRecordMapper mapper;
 
 	@Autowired
-	private IMonthlyRecordService service;
+	private IMonthlyRecordService monthlyService;
 	@Autowired
 	private MonthlyRecordMapper monthlyMapper;
 	@Autowired
@@ -51,7 +51,7 @@ public class SalesRecordServiceImpl implements ISalesRecordService {
 					record.getNumber(), record.getSaleroom(),
 					record.getDateTime().getYear() + "年" + record.getDateTime().getMonthValue() + "月");
 			// 增加销售记录的同时增加月销售记录
-			service.addMonthlyRecord(recd);
+			monthlyService.addMonthlyRecord(recd);
 			// 增加销售记录
 			mapper.addSalesRecord(record);
 			return 1;
@@ -117,7 +117,7 @@ public class SalesRecordServiceImpl implements ISalesRecordService {
 			}
 
 			// 修改销售记录的同时修改月销售记录
-			service.modifyMonthlyRecord(recd);
+			monthlyService.modifyMonthlyRecord(recd);
 
 			// 修改销售记录
 			mapper.updateSalesRecord(record);
@@ -129,7 +129,11 @@ public class SalesRecordServiceImpl implements ISalesRecordService {
 
 	@Override
 	public void deleteSalesRecord(Integer recordId) {
+		SalesRecord recd = mapper.selectSalesRecordById(recordId);
 		
+		  monthlyService.deleteMonthlyRecord(new MonthlyRecord(null,recd.getProductId(),
+		  recd.getSalesmanId(),null,null, recd.getDateTime().getYear() + "年" + recd.getDateTime().getMonthValue() + "月"));
+		 
 		mapper.deleteSalesRecord(recordId);
 	}
 

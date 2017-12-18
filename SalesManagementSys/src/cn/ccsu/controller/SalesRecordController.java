@@ -77,7 +77,11 @@ public class SalesRecordController {
 		// 根据recordId查询出销售员，并存到map中
 		List<SalesRecord> list = service.querySalesRecord(null, null, recordId);
 		if (list != null && list.size() > 0) {
-			map.put("recd", list.get(0));
+
+			SalesRecord recd = list.get(0);
+			String newString = recd.getDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+			map.put("dateTime", newString);
+			map.put("recd",recd);
 		}
 		return "modifySalesInfo";
 

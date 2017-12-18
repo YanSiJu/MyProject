@@ -23,7 +23,10 @@
 	<!-- void deleteMonthlyRecord(Map<String, Object> params); -->
 	<delete id="deleteMonthlyRecord">
 		delete from MonthlyRecord
-		<where>
+		where productId = #{productId}
+		and salesmanId = #{salesmanId}
+		and month = #{month}
+		<!-- <where>
 			<if test="productId != null">
 				productId = #{productId}
 			</if>
@@ -33,7 +36,7 @@
 			<if test="month != null">
 				and month = #{month}
 			</if>
-		</where>
+		</where> -->
 	</delete>
 
 	<!-- void addMonthlyRecord(MonthlyRecord record); -->

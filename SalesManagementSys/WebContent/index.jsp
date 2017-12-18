@@ -54,14 +54,14 @@
 			<p style="text-align: center;">
 				密码: <input type="password" name="password" />
 			</p>
-			<p style="text-align: center;">
+			<!-- <!-- <p style="text-align: center;">
 				角色: <input type="radio" name="identify" value="generalAdmin"
 					checked="checked" />普通管理员 <input type="radio" name="identify"
 					value="superAdmin" />超级管理员
-			</p>
+			</p> -->  
 
 			<p align="center">
-				<input type="submit" value="提交" />
+				<input type="submit" value="登录" />
 			</p>
 		</form>
 		<br />
