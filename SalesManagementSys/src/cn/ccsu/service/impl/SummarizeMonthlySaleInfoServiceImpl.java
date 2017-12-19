@@ -1,5 +1,6 @@
 package cn.ccsu.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +23,18 @@ public class SummarizeMonthlySaleInfoServiceImpl implements ISummarizeMonthlySal
 	// 查询销售员的月销售记录
 	@Override
 	public List<SalesmanMonthlyRecord> querySalmanMonthlySaleRoom() {
-		return mapper.querySalmanMonthlySaleRoom();
+		List<SalesmanMonthlyRecord> list = mapper.querySalmanMonthlySaleRoom();
+		Collections.sort(list);
+		return list;
 	}
 
 	// 查询产品的月销售记录
 	@Override
 	public List<ProductMonthlyRecord> queryProductMonthlySaleRoom() {
 
-		return mapper.queryProductMonthlySaleRoom();
+		List<ProductMonthlyRecord> list = mapper.queryProductMonthlySaleRoom();
+		Collections.sort(list);
+		return list;
 	}
 
 }

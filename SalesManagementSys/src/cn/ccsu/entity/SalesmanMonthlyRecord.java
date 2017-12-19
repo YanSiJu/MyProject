@@ -1,13 +1,15 @@
 package cn.ccsu.entity;
 
-public class SalesmanMonthlyRecord {
+public class SalesmanMonthlyRecord implements Comparable<SalesmanMonthlyRecord> {
 
 	private Integer id; // 销售员编号
 	private Double monthlySaleroom; // 月销售总额
-	private String name;	//销售员姓名
+	private String name; // 销售员姓名
 	private String month;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -21,7 +23,9 @@ public class SalesmanMonthlyRecord {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -64,7 +68,8 @@ public class SalesmanMonthlyRecord {
 	}
 
 	/**
-	 * @param month the month to set
+	 * @param month
+	 *            the month to set
 	 */
 	public void setMonth(String month) {
 		this.month = month;
@@ -78,7 +83,8 @@ public class SalesmanMonthlyRecord {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -95,10 +101,6 @@ public class SalesmanMonthlyRecord {
 		return id;
 	}
 
-	
-
-	
-
 	public SalesmanMonthlyRecord(Integer id, Double monthlySaleroom, String name, String month) {
 		super();
 		this.id = id;
@@ -107,7 +109,9 @@ public class SalesmanMonthlyRecord {
 		this.month = month;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -137,6 +141,11 @@ public class SalesmanMonthlyRecord {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@Override
+	public int compareTo(SalesmanMonthlyRecord o) {
+		return -this.getMonthlySaleroom().compareTo(o.getMonthlySaleroom());
 	}
 
 }

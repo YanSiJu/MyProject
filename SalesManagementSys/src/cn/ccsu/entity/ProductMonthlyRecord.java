@@ -1,6 +1,6 @@
 package cn.ccsu.entity;
 
-public class ProductMonthlyRecord {
+public class ProductMonthlyRecord implements Comparable<ProductMonthlyRecord> {
 
 	private Integer productId; // 产品编号
 	private Double monthlySaleroom; // 月销售总额
@@ -88,6 +88,11 @@ public class ProductMonthlyRecord {
 	 */
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+
+	@Override
+	public int compareTo(ProductMonthlyRecord o) {
+		return -this.getMonthlySaleroom().compareTo(o.getMonthlySaleroom());
 	}
 
 }
