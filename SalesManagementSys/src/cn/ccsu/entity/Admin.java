@@ -1,5 +1,9 @@
 package cn.ccsu.entity;
 
+/**
+ * @author Bill
+ *
+ */
 public class Admin {
 
 	public Admin() {
@@ -8,9 +12,10 @@ public class Admin {
 
 	private String account;
 	private String password;
-	
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -21,57 +26,76 @@ public class Admin {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Admin other = (Admin) obj;
 		if (account == null) {
-			if (other.account != null)
+			if (other.account != null) {
 				return false;
-		} else if (!account.equals(other.account))
+			}
+		} else if (!account.equals(other.account)) {
 			return false;
+		}
 		if (password == null) {
-			if (other.password != null)
+			if (other.password != null) {
 				return false;
-		} else if (!password.equals(other.password))
+			}
+		} else if (!password.equals(other.password)) {
 			return false;
+		}
 		return true;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Admin [account=" + account + ", password=" + password + "]";
 	}
+
 	/**
 	 * @return the account
 	 */
 	public String getAccount() {
 		return account;
 	}
+
 	/**
-	 * @param account the account to set
+	 * @param account
+	 *            the account to set
 	 */
 	public void setAccount(String account) {
 		this.account = account;
 	}
+
 	/**
 	 * @return the password
 	 */
 	public String getPassword() {
 		return password;
 	}
+
 	/**
-	 * @param password the password to set
+	 * @param password
+	 *            the password to set
 	 */
 	public void setPassword(String password) {
 		this.password = password;

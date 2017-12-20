@@ -4,6 +4,10 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * @author Bill
+ *
+ */
 public class Salesman {
 
 	private String name;

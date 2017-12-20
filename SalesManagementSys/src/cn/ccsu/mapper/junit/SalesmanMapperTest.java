@@ -11,6 +11,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import cn.ccsu.entity.Salesman;
 import cn.ccsu.mapper.SalesmanMapper;
 
+/**
+ * @author Bill
+ *
+ */
 public class SalesmanMapperTest {
 
 	public SalesmanMapperTest() {
@@ -59,7 +63,7 @@ public class SalesmanMapperTest {
 		Integer id = null;
 		String name = "a";
 		String sex = null;
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(3);
 
 		map.put("id", id);
 		map.put("name", name);

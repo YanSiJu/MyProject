@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cn.ccsu.entity.Salesman;
 import cn.ccsu.service.ISalesmanService;
 
+/**
+ * @author Bill
+ *
+ */
 @Controller
 @RequestMapping("/Salesman")
 public class SalesmanController {

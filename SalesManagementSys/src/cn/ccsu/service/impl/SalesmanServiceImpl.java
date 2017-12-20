@@ -9,6 +9,10 @@ import cn.ccsu.entity.Salesman;
 import cn.ccsu.mapper.SalesmanMapper;
 import cn.ccsu.service.ISalesmanService;
 
+/**
+ * @author Bill
+ *
+ */
 @Service
 public class SalesmanServiceImpl implements ISalesmanService {
 
@@ -33,7 +37,7 @@ public class SalesmanServiceImpl implements ISalesmanService {
 	@Override
 	public List<Salesman> querySalesman(String name, Integer id, String sex) {
 
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(3);
 		map.put("name", name);
 		map.put("id", id);
 		map.put("sex", sex);

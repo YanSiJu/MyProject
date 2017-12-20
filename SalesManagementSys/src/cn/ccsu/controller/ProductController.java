@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cn.ccsu.entity.Product;
 import cn.ccsu.service.IProductService;
 
+/**
+ * @author Bill
+ *
+ */
 @Controller
 @RequestMapping("/product")
 public class ProductController {

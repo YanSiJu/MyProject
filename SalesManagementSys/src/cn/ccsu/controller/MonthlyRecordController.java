@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cn.ccsu.entity.MonthlyRecord;
 import cn.ccsu.service.IMonthlyRecordService;
 
+/**
+ * @author Bill
+ *
+ */
 @Controller
 @RequestMapping("/MonthlyRecord")
 public class MonthlyRecordController {

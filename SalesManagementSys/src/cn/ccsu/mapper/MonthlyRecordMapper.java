@@ -5,6 +5,10 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 import cn.ccsu.entity.MonthlyRecord;
 
+/**
+ * @author Bill
+ *
+ */
 @Repository
 public interface MonthlyRecordMapper {
 

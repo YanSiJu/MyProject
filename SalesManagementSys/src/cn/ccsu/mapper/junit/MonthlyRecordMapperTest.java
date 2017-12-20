@@ -7,6 +7,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import cn.ccsu.entity.MonthlyRecord;
 import cn.ccsu.mapper.MonthlyRecordMapper;
 
+/**
+ * @author Bill
+ *
+ */
 public class MonthlyRecordMapperTest {
 
 	public MonthlyRecordMapperTest() {
@@ -39,7 +43,7 @@ public class MonthlyRecordMapperTest {
 	@Test
 	void deleteMonthlyRecordTest() {
 
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(3);
 
 		map.put("productId", 12);
 		map.put("salesmanId", 23);
@@ -52,7 +56,7 @@ public class MonthlyRecordMapperTest {
 	@Test
 	public void selectMonthlyRecordTest() {
 
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(3);
 
 		map.put("productId", 12);
 		map.put("salesmanId", 23);

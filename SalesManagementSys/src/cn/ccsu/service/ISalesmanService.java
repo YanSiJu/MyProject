@@ -3,6 +3,10 @@ package cn.ccsu.service;
 import java.util.List;
 import cn.ccsu.entity.Salesman;
 
+/**
+ * @author Bill
+ *
+ */
 public interface ISalesmanService {
 
 	// 增加销售员

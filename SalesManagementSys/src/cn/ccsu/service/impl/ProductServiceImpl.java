@@ -11,6 +11,10 @@ import cn.ccsu.entity.Product;
 import cn.ccsu.mapper.ProductMapper;
 import cn.ccsu.service.IProductService;
 
+/**
+ * @author Bill
+ *
+ */
 @Service
 public class ProductServiceImpl implements IProductService {
 
@@ -36,7 +40,7 @@ public class ProductServiceImpl implements IProductService {
 	@Override
 	public List<Product> queryProduct(String productName, Integer id) {
 
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(2);
 		map.put("productName", productName);
 		map.put("id", id);
 		return mapper.selectProduct(map);

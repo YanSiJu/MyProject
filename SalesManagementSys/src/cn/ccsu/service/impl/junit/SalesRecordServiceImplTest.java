@@ -8,6 +8,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import cn.ccsu.entity.SalesRecord;
 import cn.ccsu.service.ISalesRecordService;
 
+/**
+ * @author Bill
+ *
+ */
 public class SalesRecordServiceImplTest {
 
 	private static ClassPathXmlApplicationContext ctxt;
@@ -53,7 +57,7 @@ public class SalesRecordServiceImplTest {
 	@Test
 	public void testModifySalesRecord() {
 		Integer number = 25;
-		Integer recordId = 16; // 不可修改
+		Integer recordId = 16;
 		// 2017-12-14 19:00:33
 		SalesRecord recd = new SalesRecord(11, 6, number, null, recordId, LocalDateTime.of(2017, 07, 15, 15, 35, 10));
 

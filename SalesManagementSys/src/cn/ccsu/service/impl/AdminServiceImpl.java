@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 import cn.ccsu.mapper.AdminMapper;
 import cn.ccsu.service.IAdminService;
 
+/**
+ * @author Bill
+ *
+ */
 @Service
 public class AdminServiceImpl implements IAdminService {
 

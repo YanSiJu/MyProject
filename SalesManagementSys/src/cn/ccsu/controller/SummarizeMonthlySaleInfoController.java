@@ -10,6 +10,10 @@ import cn.ccsu.entity.ProductMonthlyRecord;
 import cn.ccsu.entity.SalesmanMonthlyRecord;
 import cn.ccsu.service.ISummarizeMonthlySaleInfoService;
 
+/**
+ * @author Bill
+ *
+ */
 @Controller
 @RequestMapping("/SalRecd")
 public class SummarizeMonthlySaleInfoController {

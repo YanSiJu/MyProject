@@ -10,6 +10,10 @@ import cn.ccsu.entity.SalesmanMonthlyRecord;
 import cn.ccsu.mapper.SummarizeMonthlySaleInfoMapper;
 import cn.ccsu.service.ISummarizeMonthlySaleInfoService;
 
+/**
+ * @author Bill
+ *
+ */
 @Service
 public class SummarizeMonthlySaleInfoServiceImpl implements ISummarizeMonthlySaleInfoService {
 

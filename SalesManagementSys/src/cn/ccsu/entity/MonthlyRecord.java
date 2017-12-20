@@ -1,11 +1,20 @@
 package cn.ccsu.entity;
 
+/**
+ * @author Bill
+ *
+ */
 public class MonthlyRecord {
 
-	private Integer recordId; // 流水号
-	private Integer productId; // 产品号
-	private Integer salesmanId; // 销售员编号
-	private Integer number; // 销售数量
+	// 流水号
+	private Integer recordId;
+	// 产品号
+	private Integer productId;
+	// 销售员编号
+	private Integer salesmanId;
+	// 销售数量
+	private Integer number;
+
 	/**
 	 * @return the recordId
 	 */
@@ -14,14 +23,17 @@ public class MonthlyRecord {
 	}
 
 	/**
-	 * @param recordId the recordId to set
+	 * @param recordId
+	 *            the recordId to set
 	 */
 	public void setRecordId(Integer recordId) {
 		this.recordId = recordId;
 	}
 
-	private Double saleroom; // 销售额
-	private String month; // 月份
+	// 销售额
+	private Double saleroom;
+	// 月份
+	private String month;
 
 	/**
 	 * @return the productId
@@ -29,8 +41,6 @@ public class MonthlyRecord {
 	public Integer getProductId() {
 		return productId;
 	}
-
-	
 
 	public MonthlyRecord(Integer recordId, Integer productId, Integer salesmanId, Integer number, Double saleroom,
 			String month) {
@@ -43,7 +53,9 @@ public class MonthlyRecord {
 		this.month = month;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

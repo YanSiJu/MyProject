@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import cn.ccsu.entity.Salesman;
 
+/**
+ * @author Bill
+ *
+ */
 @Repository("salesmanMapper")
 public interface SalesmanMapper {
 

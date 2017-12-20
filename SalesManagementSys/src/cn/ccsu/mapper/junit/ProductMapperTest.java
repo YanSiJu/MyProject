@@ -8,6 +8,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import cn.ccsu.entity.Product;
 import cn.ccsu.mapper.ProductMapper;
 
+/**
+ * @author Bill
+ *
+ */
 public class ProductMapperTest {
 
 	public ProductMapperTest() {
@@ -37,24 +41,12 @@ public class ProductMapperTest {
 		close();
 	}
 
-//	@Test
-//	public void deleteProductTest() {
-//		Integer id = null;
-//		String productName = "《我们仨》";
-//		Map<String, Object> map = new HashMap<>();
-//
-//		map.put("id", id);
-//		map.put("productName", productName);
-//		mapper.deleteProduct(map);
-//
-//		close();
-//	}
 
 	@Test
 	public void selectProductTest() {
 		Integer id = null;
 		String productName = "a";
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(2);
 
 		map.put("id", id);
 		map.put("productName", productName);

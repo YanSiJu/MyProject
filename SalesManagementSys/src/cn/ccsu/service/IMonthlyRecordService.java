@@ -3,6 +3,10 @@ package cn.ccsu.service;
 import java.util.List;
 import cn.ccsu.entity.MonthlyRecord;
 
+/**
+ * @author Bill
+ *
+ */
 public interface IMonthlyRecordService {
 
 	// 增加月销售记录

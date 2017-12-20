@@ -8,6 +8,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import cn.ccsu.entity.SalesRecord;
 import cn.ccsu.mapper.SalesRecordMapper;
 
+/**
+ * @author Bill
+ *
+ */
 public class SalesRecordMapperTest {
 
 	public SalesRecordMapperTest() {
@@ -53,7 +57,7 @@ public class SalesRecordMapperTest {
 	@Test
 	public void selectSalesRecordTest() {
 
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(3);
 
 		map.put("productId", 12);
 		map.put("salesmanId", 23);

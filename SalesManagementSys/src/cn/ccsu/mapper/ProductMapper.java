@@ -5,6 +5,10 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 import cn.ccsu.entity.Product;
 
+/**
+ * @author Bill
+ *
+ */
 @Repository("productMapper")
 public interface ProductMapper {
 	// 增加产品

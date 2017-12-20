@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import cn.ccsu.service.IAdminService;
 
+/**
+ * @author Bill
+ *
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -16,11 +20,6 @@ public class AdminController {
 
 	@Autowired
 	private IAdminService service;
-
-	// @RequestMapping("/skip")
-	// public String skip() {
-	// return "functionOptions";
-	// }
 
 	@RequestMapping("/login")
 	public String login(@RequestParam(value = "account", required = false) String account,
@@ -35,7 +34,8 @@ public class AdminController {
 		if (service.validateIdentify(account, password)) {
 			return "functionOptions";
 		}
-		return "loginError"; // 登录失败界面
+		// 登录失败界面
+		return "loginError";
 
 	}
 }

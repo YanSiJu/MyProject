@@ -3,10 +3,14 @@ package cn.ccsu;
 import org.junit.Test;
 import org.springframework.stereotype.Controller;
 
+/**
+ * @author Bill
+ *
+ */
 @Controller
-public class Main {
+public class MainTest {
 
-	public Main() {
+	public MainTest() {
 
 	}
 

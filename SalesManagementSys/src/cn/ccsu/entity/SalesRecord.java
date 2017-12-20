@@ -2,6 +2,10 @@ package cn.ccsu.entity;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author Bill
+ *
+ */
 public class SalesRecord {
 
 	public SalesRecord(Integer productId, Integer salesmanId, Integer number, Double saleroom, Integer recordId,
@@ -15,10 +19,26 @@ public class SalesRecord {
 		this.dateTime = dateTime;
 	}
 
-	private Integer productId; // 产品号
-	private Integer salesmanId; // 销售员编号
-	private Integer number; // 销售数量
-	private Double saleroom; // 销售额
+	// 产品号
+	/**
+	 * 
+	 */
+	private Integer productId;
+	// 销售员编号
+	/**
+	 * 
+	 */
+	private Integer salesmanId;
+	// 销售数量
+	/**
+	 * 
+	 */
+	private Integer number;
+	// 销售额
+	/**
+	 * 
+	 */
+	private Double saleroom;
 
 	/**
 	 * @return the dateTime
@@ -46,9 +66,11 @@ public class SalesRecord {
 		this.dateTime = dateTime;
 	}
 
-	private Integer recordId; // 流水号
-//	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-	private LocalDateTime dateTime; // 订单的时间
+	// 流水号
+	private Integer recordId;
+
+	// 订单的时间
+	private LocalDateTime dateTime;
 
 	public SalesRecord() {
 

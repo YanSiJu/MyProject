@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 import cn.ccsu.entity.ProductMonthlyRecord;
 import cn.ccsu.entity.SalesmanMonthlyRecord;
 
+/**
+ * @author Bill
+ *
+ */
 @Repository
 public interface SummarizeMonthlySaleInfoMapper {
 

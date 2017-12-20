@@ -1,5 +1,9 @@
 package cn.ccsu.entity;
 
+/**
+ * @author Bill
+ *
+ */
 public class Product {
 
 	private String productName;

@@ -1,11 +1,19 @@
 package cn.ccsu.entity;
 
+/**
+ * @author Bill
+ *
+ */
 public class ProductMonthlyRecord implements Comparable<ProductMonthlyRecord> {
 
-	private Integer productId; // 产品编号
-	private Double monthlySaleroom; // 月销售总额
-	private String month; // 月份
-	private String productName; // 产品名
+	// 产品编号
+	private Integer productId;
+	// 月销售总额
+	private Double monthlySaleroom;
+	// 月份
+	private String month;
+	// 产品名
+	private String productName;
 
 	/**
 	 * @return the month

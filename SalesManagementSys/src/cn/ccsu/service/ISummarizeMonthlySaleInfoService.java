@@ -4,6 +4,10 @@ import java.util.List;
 import cn.ccsu.entity.ProductMonthlyRecord;
 import cn.ccsu.entity.SalesmanMonthlyRecord;
 
+/**
+ * @author Bill
+ *
+ */
 public interface ISummarizeMonthlySaleInfoService {
 
 	// 统计销售员的月销售额

@@ -14,6 +14,10 @@ import cn.ccsu.mapper.SalesRecordMapper;
 import cn.ccsu.service.IMonthlyRecordService;
 import cn.ccsu.service.ISalesRecordService;
 
+/**
+ * @author Bill
+ *
+ */
 @Service("salesRecordServiceImpl")
 public class SalesRecordServiceImpl implements ISalesRecordService {
 
@@ -36,7 +40,7 @@ public class SalesRecordServiceImpl implements ISalesRecordService {
 
 		if (record != null) {
 
-			Map<String, Object> map = new HashMap<>();
+			Map<String, Object> map = new HashMap<>(1);
 			// 存放产品id,用于查询
 			map.put("id", record.getProductId());
 			// 根据id查询出产品
@@ -62,7 +66,7 @@ public class SalesRecordServiceImpl implements ISalesRecordService {
 
 	@Override
 	public List<SalesRecord> querySalesRecord(Integer productId, Integer salesmanId, Integer recordId) {
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(3);
 		map.put("productId", productId);
 		map.put("salesmanId", salesmanId);
 		map.put("recordId", recordId);
@@ -74,8 +78,10 @@ public class SalesRecordServiceImpl implements ISalesRecordService {
 		if (record != null) {
 			MonthlyRecord recd = null;
 			double price = 0;
-			int number = 0; // 存储原来的产品数量
-			int newNumber = record.getNumber(); // 修改后的产品数量
+			// 存储原来的产品数量
+			int number = 0;
+			// 修改后的产品数量
+			int newNumber = record.getNumber();
 
 			// 查询出原来的记录，获取原来的产品数量
 			List<SalesRecord> list = querySalesRecord(null, null, record.getRecordId());
@@ -92,7 +98,7 @@ public class SalesRecordServiceImpl implements ISalesRecordService {
 			System.out.println("新的产品数量:" + newNumber);
 			System.out.println("新的销售额 :" + record.getSaleroom());
 
-			Map<String, Object> map = new HashMap<>();
+			Map<String, Object> map = new HashMap<>(3);
 			map.put("productId", record.getProductId());
 			map.put("salesmanId", record.getSalesmanId());
 			map.put("month", record.getDateTime().getYear() + "年" + record.getDateTime().getMonthValue() + "月");
@@ -130,10 +136,10 @@ public class SalesRecordServiceImpl implements ISalesRecordService {
 	@Override
 	public void deleteSalesRecord(Integer recordId) {
 		SalesRecord recd = mapper.selectSalesRecordById(recordId);
-		
-		  monthlyService.deleteMonthlyRecord(new MonthlyRecord(null,recd.getProductId(),
-		  recd.getSalesmanId(),null,null, recd.getDateTime().getYear() + "年" + recd.getDateTime().getMonthValue() + "月"));
-		 
+
+		monthlyService.deleteMonthlyRecord(new MonthlyRecord(null, recd.getProductId(), recd.getSalesmanId(), null,
+				null, recd.getDateTime().getYear() + "年" + recd.getDateTime().getMonthValue() + "月"));
+
 		mapper.deleteSalesRecord(recordId);
 	}
 

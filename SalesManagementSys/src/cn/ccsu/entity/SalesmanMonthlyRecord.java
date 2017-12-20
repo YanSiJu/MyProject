@@ -1,10 +1,17 @@
 package cn.ccsu.entity;
 
+/**
+ * @author Bill
+ *
+ */
 public class SalesmanMonthlyRecord implements Comparable<SalesmanMonthlyRecord> {
 
-	private Integer id; // 销售员编号
-	private Double monthlySaleroom; // 月销售总额
-	private String name; // 销售员姓名
+	// 销售员编号
+	private Integer id;
+	// 月销售总额
+	private Double monthlySaleroom;
+	// 销售员姓名
+	private String name;
 	private String month;
 
 	/*
@@ -30,33 +37,44 @@ public class SalesmanMonthlyRecord implements Comparable<SalesmanMonthlyRecord> 
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		SalesmanMonthlyRecord other = (SalesmanMonthlyRecord) obj;
 		if (id == null) {
-			if (other.id != null)
+			if (other.id != null) {
 				return false;
-		} else if (!id.equals(other.id))
+			}
+		} else if (!id.equals(other.id)) {
 			return false;
+		}
 		if (month == null) {
-			if (other.month != null)
+			if (other.month != null) {
 				return false;
-		} else if (!month.equals(other.month))
+			}
+		} else if (!month.equals(other.month)) {
 			return false;
+		}
 		if (monthlySaleroom == null) {
-			if (other.monthlySaleroom != null)
+			if (other.monthlySaleroom != null) {
 				return false;
-		} else if (!monthlySaleroom.equals(other.monthlySaleroom))
+			}
+		} else if (!monthlySaleroom.equals(other.monthlySaleroom)) {
 			return false;
+		}
 		if (name == null) {
-			if (other.name != null)
+			if (other.name != null) {
 				return false;
-		} else if (!name.equals(other.name))
+			}
+		} else if (!name.equals(other.name)) {
 			return false;
+		}
 		return true;
 	}
 

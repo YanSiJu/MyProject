@@ -9,6 +9,10 @@ import cn.ccsu.entity.MonthlyRecord;
 import cn.ccsu.mapper.MonthlyRecordMapper;
 import cn.ccsu.service.IMonthlyRecordService;
 
+/**
+ * @author Bill
+ *
+ */
 @Service
 public class MonthlyRecordServiceImpl implements IMonthlyRecordService {
 
@@ -47,7 +51,7 @@ public class MonthlyRecordServiceImpl implements IMonthlyRecordService {
 
 	@Override
 	public List<MonthlyRecord> queryMonthlyRecord(Integer productId, Integer salesmanId, String month) {
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(3);
 		map.put("productId", productId);
 		map.put("salesmanId", salesmanId);
 		map.put("month", month);
@@ -71,7 +75,7 @@ public class MonthlyRecordServiceImpl implements IMonthlyRecordService {
 			return -1;
 		}
 
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(3);
 		map.put("productId", record.getProductId());
 		map.put("salesmanId", record.getSalesmanId());
 		map.put("month", record.getMonth());
