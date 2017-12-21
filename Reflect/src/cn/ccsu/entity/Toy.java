@@ -3,7 +3,7 @@ package cn.ccsu.entity;
 public class Toy {
 
 	public Toy() {
-		System.out.println("Class Toy's  构造器");
+		System.out.println("Class Toy's  无参构造器");
 	}
 
 	static {
