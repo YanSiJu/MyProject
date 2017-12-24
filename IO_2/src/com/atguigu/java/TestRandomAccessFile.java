@@ -32,14 +32,12 @@ public class TestRandomAccessFile {
 			raf.write("xy".getBytes());
 			raf.write(sb.toString().getBytes());
 		}catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			if(raf != null){
 				try {
 					raf.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -63,14 +61,12 @@ public class TestRandomAccessFile {
 			raf.write("xy".getBytes());
 			raf.write(str.getBytes());
 		}catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			if(raf != null){
 				try {
 					raf.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -88,14 +84,12 @@ public class TestRandomAccessFile {
 			raf.seek(4);
 			raf.write("xy".getBytes());
 		}catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			if(raf != null){
 				try {
 					raf.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -118,17 +112,14 @@ public class TestRandomAccessFile {
 				raf2.write(b, 0, len);
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			if(raf2 != null){
 				try {
 					raf2.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -136,7 +127,6 @@ public class TestRandomAccessFile {
 				try {
 					raf1.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
