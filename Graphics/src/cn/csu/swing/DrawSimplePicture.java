@@ -23,10 +23,13 @@ public class DrawSimplePicture {
 			@Override
 			public void paint(Graphics g) { // 重写 pait 方法
 				super.paint(g); // 这个要加上，但不加也能正常显示
+				
+				g.setColor(null); // 设置画笔颜色
 				g.drawLine(80, 200, 50, 50); // 画直线
-				g.setColor(Color.BLUE); // 设置画笔颜色
+				g.setColor(Color.RED); // 设置画笔颜色
 				g.fillRect(80, 60, 40, 60); // 填充一个矩形
-				g.drawOval(10, 10, 30, 20); // 画一个椭圆
+				g.fillOval(10, 20, 30, 40);
+//				g.drawOval(10, 20, 30, 20); // 画一个椭圆
 			}
 		};
 		frame.setContentPane(panel); // 将画布添加到窗口中
