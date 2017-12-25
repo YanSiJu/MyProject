@@ -20,6 +20,7 @@ public class StandardStream {
 
 	@Test
 	public void test() {
+		
 		System.out.println("System.in:" + System.in + "\n");
 		System.err.println("System.in:" + System.in + "\n");
 		System.out.println("System.out:" + System.out + "\n");

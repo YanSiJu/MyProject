@@ -1,4 +1,4 @@
-Java Linux 
-Unix Hello,spring!! 
-
- Fire!!
+Java 
+L
+Use RandomAccessFile to modify file!!
+inux Unix Hello,spring!!  Fire!!
