@@ -3,13 +3,13 @@ package cn.ccsu.draw.frame;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
+import javax.swing.JPanel;
 import cn.ccsu.draw.factory.GraphicsFactory;
 import cn.ccsu.draw.factory.RecFactory;
 
@@ -19,7 +19,21 @@ public class MyFrame extends JFrame {
 	private JButton ovalBtn;
 	private JButton lineBtn;
 	private JButton colorBtn;
+	private JPanel panel;
+	private static Graphics g;
 
+	{
+		// ≥ı ºªØª≠≤º
+		panel = new JPanel() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void paint(Graphics g) {
+				super.paint(g);
+				MyFrame.g = g;
+			}
+		};
+	}
 	/**
 	 * 
 	 */
@@ -65,7 +79,7 @@ public class MyFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GraphicsFactory factory = new RecFactory(f);
+				GraphicsFactory factory = new RecFactory(f,MyFrame.g);
 				factory.draw(null);
 			}
 

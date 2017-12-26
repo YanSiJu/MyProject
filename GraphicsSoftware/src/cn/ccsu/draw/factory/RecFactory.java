@@ -8,11 +8,11 @@ import javax.swing.JPanel;
 public class RecFactory extends GraphicsFactory {
 
 	public RecFactory() {
-		super(new JFrame());
+		super();
 	}
 
-	public RecFactory(JFrame frame) {
-		super(frame);
+	public RecFactory(JFrame frame, Graphics g) {
+		super(frame,g);
 	}
 
 	@Override
