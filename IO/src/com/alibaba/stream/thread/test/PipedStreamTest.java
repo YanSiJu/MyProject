@@ -30,14 +30,14 @@ public class PipedStreamTest {
 		Thread receiver = new Thread(rcv);
 		Thread sender = new Thread(s);
 
-		receiver.start();
-		// 不加这个sleep会出问题 :WHY???
+		sender.start();
+		// 不加这个sleep会出问题 ------>WHY???
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(50);// 这个时间的大小也有影响
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		sender.start();
+		receiver.start();
 
 	}
 

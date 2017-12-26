@@ -8,27 +8,25 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.junit.Test;
-
 import com.atguigu.java8.Employee.Status;
 
 public class TestStreamAPI3 {
 	
 	List<Employee> emps = Arrays.asList(
-			new Employee(102, "鏉庡洓", 79, 6666.66, Status.BUSY),
-			new Employee(101, "寮犱笁", 18, 9999.99, Status.FREE),
-			new Employee(103, "鐜嬩簲", 28, 3333.33, Status.VOCATION),
-			new Employee(104, "璧靛叚", 8, 7777.77, Status.BUSY),
-			new Employee(104, "璧靛叚", 8, 7777.77, Status.FREE),
-			new Employee(104, "璧靛叚", 8, 7777.77, Status.FREE),
-			new Employee(105, "鐢颁竷", 38, 5555.55, Status.BUSY)
+			new Employee(102, "李四", 79, 6666.66, Status.BUSY),
+			new Employee(101, "张三", 18, 9999.99, Status.FREE),
+			new Employee(103, "王五", 28, 3333.33, Status.VOCATION),
+			new Employee(104, "赵六", 8, 7777.77, Status.BUSY),
+			new Employee(104, "赵六", 8, 7777.77, Status.FREE),
+			new Employee(104, "赵六", 8, 7777.77, Status.FREE),
+			new Employee(105, "田七", 38, 5555.55, Status.BUSY)
 	);
 	
-	//3. 缁堟鎿嶄綔
+	//3. 终止操作
 	/*
-		褰掔害
-		reduce(T identity, BinaryOperator) / reduce(BinaryOperator) 鈥斺�斿彲浠ュ皢娴佷腑鍏冪礌鍙嶅缁撳悎璧锋潵锛屽緱鍒颁竴涓�笺��
+		归约
+		reduce(T identity, BinaryOperator) / reduce(BinaryOperator) ——可以将流中元素反复结合起来，得到一个值。
 	 */
 	@Test
 	public void test1(){
@@ -48,15 +46,14 @@ public class TestStreamAPI3 {
 		System.out.println(op.get());
 	}
 	
-	//闇�姹傦細鎼滅储鍚嶅瓧涓� 鈥滃叚鈥� 鍑虹幇鐨勬鏁�
-	@SuppressWarnings("unlikely-arg-type")
+	//需求：搜索名字中 “六” 出现的次数
 	@Test
 	public void test2(){
 		Optional<Integer> sum = emps.stream()
 			.map(Employee::getName)
 			.flatMap(TestStreamAPI1::filterCharacter)
 			.map((ch) -> {
-				if(ch.equals(""))
+				if(ch.equals('六'))
 					return 1;
 				else 
 					return 0;
@@ -65,7 +62,7 @@ public class TestStreamAPI3 {
 		System.out.println(sum.get());
 	}
 	
-	//collect鈥斺�斿皢娴佽浆鎹负鍏朵粬褰㈠紡銆傛帴鏀朵竴涓� Collector鎺ュ彛鐨勫疄鐜帮紝鐢ㄤ簬缁橲tream涓厓绱犲仛姹囨�荤殑鏂规硶
+	//collect——将流转换为其他形式。接收一个 Collector接口的实现，用于给Stream中元素做汇总的方法
 	@Test
 	public void test3(){
 		List<String> list = emps.stream()
@@ -127,7 +124,7 @@ public class TestStreamAPI3 {
 		System.out.println(dss.getMax());
 	}
 	
-	//鍒嗙粍
+	//分组
 	@Test
 	public void test5(){
 		Map<Status, List<Employee>> map = emps.stream()
@@ -136,23 +133,23 @@ public class TestStreamAPI3 {
 		System.out.println(map);
 	}
 	
-	//澶氱骇鍒嗙粍
+	//多级分组
 	@Test
 	public void test6(){
 		Map<Status, Map<String, List<Employee>>> map = emps.stream()
 			.collect(Collectors.groupingBy(Employee::getStatus, Collectors.groupingBy((e) -> {
 				if(e.getAge() >= 60)
-					return "鑰佸勾";
+					return "老年";
 				else if(e.getAge() >= 35)
-					return "涓勾";
+					return "中年";
 				else
-					return "鎴愬勾";
+					return "成年";
 			})));
 		
 		System.out.println(map);
 	}
 	
-	//鍒嗗尯
+	//分区
 	@Test
 	public void test7(){
 		Map<Boolean, List<Employee>> map = emps.stream()
