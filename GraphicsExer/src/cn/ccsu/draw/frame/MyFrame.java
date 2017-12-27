@@ -19,6 +19,7 @@ public class MyFrame extends JFrame {
 	private JButton ovalBtn;
 	private JButton lineBtn;
 	private JButton colorBtn;
+	@SuppressWarnings("unused")
 	private JPanel panel;
 	private static Graphics g;
 
