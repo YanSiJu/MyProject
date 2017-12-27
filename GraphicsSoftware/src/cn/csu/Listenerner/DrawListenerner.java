@@ -198,7 +198,7 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 		y2 = e.getY();
 		Graphics2D g2d = (Graphics2D) g;
 		if (type.equals("铅笔")) {
-
+				
 			// 根据数据来实例化图形对象
 			shape = new LineFactory(x1, y1, x2, y2, color, new BasicStroke(1));
 			// 调用图形的绘图方法

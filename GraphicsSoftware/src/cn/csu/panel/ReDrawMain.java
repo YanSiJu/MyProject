@@ -79,6 +79,8 @@ public class ReDrawMain extends JPanel {
 		// 循环遍历colorArray数组，根据数组中的元素来实例化按钮对象
 		for (int i = 0; i < colorArray.length; i++) {
 			JButton button = new JButton();
+			
+			
 			button.setBackground(colorArray[i]);
 			button.setPreferredSize(new Dimension(50, 50));
 			// 4.将事件源按钮对象通过addActionListener()监听方法和事件处理类dl对象绑定。
