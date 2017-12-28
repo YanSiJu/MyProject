@@ -26,7 +26,9 @@ public class TestStreamAPI2 {
 			new Employee(103, "王五", 28, 3333.33, Status.VOCATION),
 			new Employee(104, "赵六", 8, 7777.77, Status.BUSY),
 			new Employee(104, "赵六", 8, 7777.77, Status.FREE),
-			new Employee(104, "赵六", 8, 7777.77, Status.FREE),
+			new Employee(205, "Mikeal", 8, 7777.77, Status.FREE),
+			new Employee(107, "Linus", 8, 7777.77, Status.FREE),
+			new Employee(108, "jerry", 8, 7777.77, Status.FREE),
 			new Employee(105, "田七", 38, 5555.55, Status.BUSY)
 	);
 	

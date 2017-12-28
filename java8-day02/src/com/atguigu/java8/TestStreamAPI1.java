@@ -81,7 +81,7 @@ public class TestStreamAPI1 {
 	@Test
 	public void test2(){
 		emps.stream()
-			.map(Employee::getName)
+			.map(Employee::getAge)
 			.sorted()
 			.forEach(System.out::println);
 		

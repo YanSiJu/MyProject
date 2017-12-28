@@ -25,7 +25,7 @@ public class StreamExer {
 		Stream<Employee> stream = emps.parallelStream();
 		System.out.println("stream:" + ems + "\n");
 		stream.filter((e) -> {
-			System.out.println("中间操作\n");
+			System.out.println("中间操作");
 			return e.getAge() > 20;
 		}).forEach(System.out::println);
 

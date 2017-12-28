@@ -30,7 +30,7 @@ public class TestOptional {
 	
 	@Test
 	public void test3(){
-		Optional<Employee> op = Optional.ofNullable(new Employee());
+		Optional<Employee> op = Optional.ofNullable(null);
 		
 		if(op.isPresent()){
 			System.out.println(op.get());
@@ -45,11 +45,11 @@ public class TestOptional {
 	
 	@Test
 	public void test2(){
-		/*Optional<Employee> op = Optional.ofNullable(null);
-		System.out.println(op.get());*/
-		
-//		Optional<Employee> op = Optional.empty();
+//		Optional<Employee> op = Optional.ofNullable(null);
 //		System.out.println(op.get());
+		
+		Optional<Employee> op = Optional.empty();
+		System.out.println(op.get());
 	}
 
 	@Test
