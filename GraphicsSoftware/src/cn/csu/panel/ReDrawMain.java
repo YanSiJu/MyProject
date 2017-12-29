@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.ObjectStreamException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,10 @@ public class ReDrawMain extends JPanel {
 	private static volatile ReDrawMain panel = new ReDrawMain();
 
 	public static ReDrawMain getPanel() {
+		return panel;
+	}
+
+	private Object readResolve() throws ObjectStreamException {
 		return panel;
 	}
 
