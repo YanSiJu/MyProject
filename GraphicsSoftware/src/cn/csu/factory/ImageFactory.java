@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
 
+import cn.csu.Listenerner.DrawListenerner;
+
 public class ImageFactory extends ShapeFactory {
 
 	public ImageFactory(Color color, int x1, int y1, int x2, int y2) {
@@ -11,12 +13,15 @@ public class ImageFactory extends ShapeFactory {
 
 	}
 
+	public ImageFactory(DrawListenerner listenerner) {
+		super(listenerner);
+		
+	}
+
 	@Override
 	public void draw(Graphics2D g) {
 		ImageIcon im = new ImageIcon("C:\\Users\\某某\\Desktop\\路线\\1.jpg");// 画出图片
 		g.drawImage(im.getImage(), getX1(), getY1(), getX2() - getX1(), getY2() - getY1(), null);// 释放鼠标画出图片
 	}
-
-	
 
 }

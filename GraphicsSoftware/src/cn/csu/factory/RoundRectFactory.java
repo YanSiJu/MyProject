@@ -1,8 +1,9 @@
 package cn.csu.factory;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics2D;
+
+import cn.csu.Listenerner.DrawListenerner;
 
 /**
  * 定义ShapeRoundRect类，该类是用来绘制圆角矩形的类
@@ -10,13 +11,12 @@ import java.awt.Graphics2D;
 
 public class RoundRectFactory extends ShapeFactory {
 
-	
-	
 	private int arcH, arcW;
 
-	public RoundRectFactory(int x1, int y1, int x2, int y2, Color color,
-			BasicStroke s, int arcH, int arcW) {
-		super(x1, y1, x2, y2, color, s);
+	public RoundRectFactory(DrawListenerner listenerner, int arcH, int arcW) {
+		super(Math.min(listenerner.getX1(), listenerner.getX2()), Math.min(listenerner.getY1(), listenerner.getY2()),
+				Math.abs(listenerner.getX1() - listenerner.getX2()),
+				Math.abs(listenerner.getY1() - listenerner.getY2()), listenerner.getColorStr(), new BasicStroke());
 		this.arcH = arcH;
 		this.arcW = arcW;
 	}
@@ -28,9 +28,12 @@ public class RoundRectFactory extends ShapeFactory {
 	 */
 	@Override
 	public void draw(Graphics2D g) {
-		g.setStroke(getStroke());// 设置画笔的粗细
-		g.setColor(getColor());// 设置画笔的颜色
-		g.drawRoundRect(getX1(), getY1(), getX2(), getY2(), arcW, arcH);// 绘制矩形
+		// 设置画笔的粗细
+		g.setStroke(getStroke());
+		// 设置画笔颜色
+		c.setGraphicsColor(g);
+		// 绘制矩形
+		g.drawRoundRect(getX1(), getY1(), getX2(), getY2(), arcW, arcH);
 	}
 
 }

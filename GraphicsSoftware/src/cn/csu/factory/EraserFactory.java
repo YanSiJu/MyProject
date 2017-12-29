@@ -1,15 +1,16 @@
 package cn.csu.factory;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
 
+import cn.csu.Listenerner.DrawListenerner;
+
 public class EraserFactory extends ShapeFactory {
 
-	public EraserFactory(int x1, int y1, int x2, int y2, Color color, BasicStroke s) {
-		super(x1, y1, x2, y2, color, s);
-
+	
+	public EraserFactory(DrawListenerner listenerner) {
+		super(listenerner);
 	}
 
 	@Override

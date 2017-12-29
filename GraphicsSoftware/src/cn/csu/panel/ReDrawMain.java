@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,7 +36,7 @@ public class ReDrawMain extends JPanel {
 	public void initUI() {
 		frame.setTitle("依米的画图板");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(2000, 900);
+		frame.setSize(5000, 2000);
 		frame.setLocationRelativeTo(null);
 
 		DrawListenerner dl = new DrawListenerner(this, shapeArray);
@@ -75,14 +77,22 @@ public class ReDrawMain extends JPanel {
 
 		// 定义Color数组，用来存储按钮上要显示的颜色信息
 		Color[] colorArray = { Color.BLUE, Color.GREEN, Color.RED, Color.BLACK, Color.lightGray, Color.ORANGE,
-				Color.PINK, new Color(123, 100, 132) };
+				Color.PINK, Color.yellow};
+		Map<Color, String> map = new HashMap<>(colorArray.length);
+		map.put(Color.BLUE, "Blue");
+		map.put(Color.green, "Green");
+		map.put(Color.red, "Red");
+		map.put(Color.LIGHT_GRAY, "LightGray");
+		map.put(Color.black, "Black");
+		map.put(Color.orange, "Orange");
+		map.put(Color.PINK, "Pink");
+		map.put(Color.yellow, "Yellow");
 		// 循环遍历colorArray数组，根据数组中的元素来实例化按钮对象
 		for (int i = 0; i < colorArray.length; i++) {
 			JButton button = new JButton();
-			
-			
 			button.setBackground(colorArray[i]);
 			button.setPreferredSize(new Dimension(50, 50));
+			button.setToolTipText(map.get(colorArray[i]));
 			// 4.将事件源按钮对象通过addActionListener()监听方法和事件处理类dl对象绑定。
 			button.addActionListener(dl);
 			panel3.add(button);
@@ -112,9 +122,7 @@ public class ReDrawMain extends JPanel {
 	public void paint(Graphics gr) {
 		super.paint(gr);// 调用父类的paint（）
 		/*
-		 * 从数组中获取Shape对象 
-		 * 判断shape是否不为空 
-		 * 如果不为空则调用调用绘制图形的方法
+		 * 从数组中获取Shape对象 判断shape是否不为空 如果不为空则调用调用绘制图形的方法
 		 */
 		for (int i = 0; i < shapeArray.length; i++) {
 

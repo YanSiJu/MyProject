@@ -1,22 +1,27 @@
 package cn.csu.factory;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics2D;
+
+import cn.csu.Listenerner.DrawListenerner;
 
 public class StarFactory extends ShapeFactory {
 	private int x, y;
 	private int a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10;
 
-	public StarFactory(int x1, int y1, int x2, int y2, Color color, BasicStroke s) {
+	public StarFactory(int x1, int y1, int x2, int y2, String color, BasicStroke s) {
 		super(x1, y1, x2, y2, color, s);
 
 	}
 
+	public StarFactory(DrawListenerner listenerner) {
+		super(listenerner);
+	}
+
 	public void draw(Graphics2D g) {
 		g.setStroke(new BasicStroke());// 画笔大小
-		g.setColor(getColor());// 设置画笔颜色
-
+		// 设置画笔颜色
+		c.setGraphicsColor(g);
 		x = (Math.abs(getX2() - getX1())) / 8;
 		y = (Math.abs(getY2() - getY1())) / 8;
 		a1 = getX1() + 4 * x;

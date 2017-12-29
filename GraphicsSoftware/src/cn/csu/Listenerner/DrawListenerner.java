@@ -41,6 +41,7 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	private ShapeFactory shape;// 声明图形对象
 	private ShapeFactory[] shapeArray;// 声明存储图形对象的数组
 	private int number = 0;// 记录器，用来记录已经存储的图形个数。
+	private String colorStr;
 	@SuppressWarnings("unused")
 	private JPanel panel4;
 	Random r = new Random();
@@ -54,13 +55,20 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	 * @param shapeArray是从DrawMain类传递过来的存储图形的数组对象
 	 */
 	public DrawListenerner(JPanel panel4, ShapeFactory[] shapeArray) {
-
 		this.panel4 = panel4;
 		this.shapeArray = shapeArray;
 	}
 
 	public void setG(Graphics g) {
 		this.g = g;
+	}
+
+	public void saveShape() {
+
+		if (number < shapeArray.length) {
+			// 将图形对象存入到数组中
+			shapeArray[number++] = shape;
+		}
 	}
 
 	/**
@@ -72,6 +80,7 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 		String text = button.getText();// 获取按钮上的文字信息
 		if (text == null || text.equals("")) {// 判断是否点击的是颜色按钮
 			color = button.getBackground();// 获取按钮的背景颜色
+			colorStr = button.getToolTipText();
 			System.out.println("color = " + color);
 		} else {
 			type = button.getText();// 获取按钮上的文字信息
@@ -88,25 +97,6 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 		x1 = e.getX();
 		y1 = e.getY();
 
-		// if (type.equals("吸管")) {
-		// try {
-		// x1 = e.getXOnScreen();
-		// y1 = e.getYOnScreen();
-		// // 创建一个机器人对象
-		// Robot robot = new Robot();
-		// // 2.构造一个矩形区域，这个区域就是你要获取颜色的区域
-		// Rectangle rec = new Rectangle(x1, y1, 1, 1);
-		// BufferedImage ima = robot.createScreenCapture(rec);
-		// // 3.获取图片的背景像素点颜色:三原色red blue green,获取图片指定像素点颜色
-		// int a = ima.getRGB(0, 0);
-		// color = new Color(a);
-		//
-		// // 把颜色设置到画笔上
-		// } catch (AWTException ex) {
-		// ex.printStackTrace();
-		// }
-		// }
-
 	}
 
 	/**
@@ -121,19 +111,13 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 		if (type.equals("直线")) {
 
 			// 根据数据来实例化图形对象
-			shape = new LineFactory(x1, y1, x2, y2, color, new BasicStroke(1));
+			shape = new LineFactory(this);
 			// 调用图形的绘图方法
 			shape.draw((Graphics2D) g);
-
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中
-				shapeArray[number++] = shape;
-			}
-
 		} else if (type.equals("任意多边形")) {
 
 			if (count == 0) {
-				shape = new LineFactory(x1, y1, x2, y2, color, new BasicStroke(1));
+				shape = new LineFactory(this);
 				// 调用图形的绘图方法
 				shape.draw((Graphics2D) g);
 				count++;
@@ -142,11 +126,11 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			}
 
 			else if (count != 0) {
-				shape = new LineFactory(t3, t4, x2, y2, color, new BasicStroke(1));// 点击鼠标该点与前一个点相连
+				shape = new LineFactory(t3, t4, x2, y2, colorStr, new BasicStroke(1));// 点击鼠标该点与前一个点相连
 				// 调用图形的绘图方法
 				shape.draw((Graphics2D) g);
 				if (e.getClickCount() == 2) {// 双击鼠标则闭合线段，该最新的点与最早的点相连接，闭合图形
-					shape = new LineFactory(t1, t2, x2, y2, color, new BasicStroke(1));
+					shape = new LineFactory(t1, t2, x2, y2, colorStr, new BasicStroke(1));
 					shape.draw((Graphics2D) g);
 					count = 0;
 				}
@@ -154,39 +138,20 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			}
 			t3 = x2;
 			t4 = y2;
-
-			if (number < shapeArray.length) {
-				shapeArray[number++] = shape;
-
-			}
-
 		} else if (type.equals("圆角矩形")) {
-			shape = new RoundRectFactory(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2),
-					color, new BasicStroke(), 30, 30);
+			shape = new RoundRectFactory(this, 30, 30);
 			shape.draw((Graphics2D) g);
-
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中
-				shapeArray[number++] = shape;
-			}
 		} else if (type.equals("填充圆")) {
-			shape = new CircleFactory(x1, y1, x2, y2, color, s);
+			shape = new CircleFactory(this);
 			shape.draw((Graphics2D) g);
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中
-				shapeArray[number++] = shape;
-			}
 		} else if (type.equals("五角星")) {
-			shape = new StarFactory(x1, y1, x2, y2, color, s);
+			shape = new StarFactory(this);
 			shape.draw((Graphics2D) g);
 			System.out.println(">>>>>>>>>" + x1 + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + y1);
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中
-				shapeArray[number++] = shape;
-
-			}
 
 		}
+
+		saveShape();
 	}
 
 	/**
@@ -198,88 +163,46 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 		y2 = e.getY();
 		Graphics2D g2d = (Graphics2D) g;
 		if (type.equals("铅笔")) {
-				
-			// 根据数据来实例化图形对象
-			shape = new LineFactory(x1, y1, x2, y2, color, new BasicStroke(1));
-			// 调用图形的绘图方法
-			shape.draw((Graphics2D) g);
-
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中
-				shapeArray[number++] = shape;
-			}
-			x1 = x2;
-			y1 = y2;
-		} else if (type.equals("刷子")) {
 
 			// 根据数据来实例化图形对象
-			shape = new LineFactory(x1, y1, x2, y2, color, new BasicStroke(10));
+			shape = new LineFactory(this);
 			// 调用图形的绘图方法
 			shape.draw((Graphics2D) g);
-
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中
-				shapeArray[number++] = shape;
-			}
 			x1 = x2;
 			y1 = y2;
-		} else if (type.equals("喷枪")) {
+		} /*
+			 * else if (type.equals("刷子")) {
+			 * 
+			 * // 根据数据来实例化图形对象 shape = new LineFactory(x1, y1, x2, y2, color, new
+			 * BasicStroke(10)); // 调用图形的绘图方法 shape.draw((Graphics2D) g);
+			 * 
+			 * if (number < shapeArray.length) { // 将图形对象存入到数组中 shapeArray[number++] =
+			 * shape; } x1 = x2; y1 = y2; }
+			 */ else if (type.equals("喷枪")) {
 			g2d.setColor(color);
-			shape = new GumFactory(x1, y1, x2, y2, color, s);
+			shape = new GumFactory(this);
 			shape.draw((Graphics2D) g);
-
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中
-				shapeArray[number++] = shape;
-			}
 			x1 = x2;
 			y1 = y2;
 		} else if (type.equals("橡皮")) {
-			shape = new EraserFactory(x1, y1, x2, y2, color, s);
+			shape = new EraserFactory(this);
 			shape.draw((Graphics2D) g);
-
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中
-				shapeArray[number++] = shape;
-			}
-
 			x1 = x2;
 			y1 = y2;
 		} else if (type.equals("图片")) {
-			shape = new ImageFactory(color, x1, y1, x2, y2);
+			shape = new ImageFactory(this);
 			shape.draw((Graphics2D) g);
-
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中t
-				shapeArray[number++] = shape;
-			}
 		} else if (type.equals("填充矩形")) {
-			shape = new FilledRectFactory(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2),
-					color, new BasicStroke(1));
+			shape = new FilledRectFactory(this);
 			shape.draw((Graphics2D) g);
-
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中
-				shapeArray[number++] = shape;
-			}
 		} else if (type.equals("文字")) {
-			shape = new StringFactory(x1, y1, x2, y2, color, s);
+			shape = new StringFactory(this);
 			shape.draw((Graphics2D) g);
-
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中
-				shapeArray[number++] = shape;
-			}
 		} else if (type.equals("3d矩形")) {// 7.3d矩形
-			shape = new ThreeDRectFactory(x1, y1, x2, y2, color, s);
+			shape = new ThreeDRectFactory(this);
 			shape.draw((Graphics2D) g);
-
-			if (number < shapeArray.length) {
-				// 将图形对象存入到数组中
-				shapeArray[number++] = shape;
-			}
 		}
-
+		saveShape();
 	}
 
 	/**
@@ -436,4 +359,12 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	public Graphics getG() {
 		return g;
 	}
+
+	/**
+	 * @return the colorStr
+	 */
+	public String getColorStr() {
+		return colorStr;
+	}
+
 }

@@ -1,15 +1,20 @@
 package cn.csu.factory;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Random;
+
+import cn.csu.Listenerner.DrawListenerner;
 
 public class GumFactory extends ShapeFactory {
 
 	Random r = new Random();
-	public GumFactory(int x1, int y1, int x2, int y2,Color color,BasicStroke stroke) {
+	public GumFactory(int x1, int y1, int x2, int y2,String color,BasicStroke stroke) {
 		super(x1, y1, x2, y2, color, stroke);
+	}
+	
+	public GumFactory(DrawListenerner listenerner) {
+		super(listenerner);
 	}
 	
 	@Override

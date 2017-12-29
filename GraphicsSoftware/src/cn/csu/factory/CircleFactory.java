@@ -1,21 +1,23 @@
 package cn.csu.factory;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics2D;
+
+import cn.csu.Listenerner.DrawListenerner;
 
 public class CircleFactory extends ShapeFactory {
 
-	public CircleFactory(int x1, int y1, int x2, int y2, Color color, BasicStroke s) {
-		super(x1, y1, x2, y2, color, s);
-
+	public CircleFactory(DrawListenerner listenerner) {
+		super(listenerner);
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.setStroke(g.getStroke());// 画笔大小
-		g.setColor(getColor());// 设置画笔颜色
-		g.fillOval(getX1(), getY1(), getX2() - getX1(), getY2() - getY1());// 绘制圆的方法
+		// 画笔大小
+		g.setStroke(g.getStroke());
+		// 设置画笔颜色
+		c.setGraphicsColor(g);
+		// 绘制圆的方法
+		g.fillOval(getX1(), getY1(), getX2() - getX1(), getY2() - getY1());
 
 	}
 
