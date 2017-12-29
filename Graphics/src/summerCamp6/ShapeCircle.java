@@ -14,6 +14,7 @@ public class ShapeCircle extends Shape {
 	@Override
 	public void draw(Graphics2D g) {
 		g.setStroke(g.getStroke());// 画笔大小
+		System.out.println(getColor());
 		g.setColor(getColor());// 设置画笔颜色
 		g.fillOval(getX1(), getY1(), getX2() - getX1(), getY2() - getY1());// 绘制圆的方法
 

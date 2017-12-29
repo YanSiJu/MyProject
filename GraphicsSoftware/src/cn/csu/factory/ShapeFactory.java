@@ -2,6 +2,8 @@ package cn.csu.factory;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
+import java.util.Optional;
+
 import cn.csu.Listenerner.DrawListenerner;
 import cn.csu.bridge.IColor;
 
@@ -20,8 +22,9 @@ public abstract class ShapeFactory {
 	}
 
 	private void setG() {
+		Optional<String> op = Optional.ofNullable(color);
 		try {
-			Class<?> clazz = Class.forName("cn.csu.bridge.IColor" + color);
+			Class<?> clazz = Class.forName("cn.csu.bridge." + op.orElse("Black"));
 			c = (IColor) clazz.newInstance();
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
@@ -47,13 +50,6 @@ public abstract class ShapeFactory {
 		setG();
 	}
 
-	/**
-	 * @param color
-	 *            the color to set
-	 */
-	public void setColor(IColor color) {
-		this.c = color;
-	}
 
 	/**
 	 * 绘制图形的方法
@@ -62,51 +58,28 @@ public abstract class ShapeFactory {
 	 */
 	public abstract void draw(Graphics2D g);
 
-	public int getX1() {
+	protected int getX1() {
 		return x1;
 	}
 
-	public void setX1(int x1) {
-		this.x1 = x1;
-	}
-
-	public int getY1() {
+	protected int getY1() {
 		return y1;
 	}
 
-	public void setY1(int y1) {
-		this.y1 = y1;
-	}
-
-	public int getX2() {
+	protected  int getX2() {
 		return x2;
 	}
 
-	public void setX2(int x2) {
-		this.x2 = x2;
-	}
-
-	public int getY2() {
+	protected int getY2() {
 		return y2;
 	}
 
-	public void setY2(int y2) {
-		this.y2 = y2;
-	}
-
-	public BasicStroke getStroke() {
+	protected BasicStroke getStroke() {
 		return stroke;
 	}
 
-	public void setStroke(BasicStroke stroke) {
+	protected void setStroke(BasicStroke stroke) {
 		this.stroke = stroke;
-	}
-
-	/**
-	 * @return the colorStr
-	 */
-	public String getColorStr() {
-		return color;
 	}
 
 }

@@ -17,6 +17,7 @@ public class ThreeDRectFactory extends ShapeFactory {
 
 	@Override
 	public void draw(Graphics2D g) {
+		// 画笔大小
 		g.setStroke(g.getStroke());
 		// 设置画笔颜色
 		c.setGraphicsColor(g);

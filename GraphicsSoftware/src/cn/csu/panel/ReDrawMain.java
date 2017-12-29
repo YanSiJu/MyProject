@@ -22,6 +22,15 @@ public class ReDrawMain extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private ReDrawMain() {
+	}
+
+	private static volatile ReDrawMain panel = new ReDrawMain();
+
+	public static ReDrawMain getPanel() {
+		return panel;
+	}
+
 	JFrame frame = new JFrame();
 
 	public static void main(String[] args) {
@@ -77,7 +86,7 @@ public class ReDrawMain extends JPanel {
 
 		// 定义Color数组，用来存储按钮上要显示的颜色信息
 		Color[] colorArray = { Color.BLUE, Color.GREEN, Color.RED, Color.BLACK, Color.lightGray, Color.ORANGE,
-				Color.PINK, Color.yellow};
+				Color.PINK, Color.yellow };
 		Map<Color, String> map = new HashMap<>(colorArray.length);
 		map.put(Color.BLUE, "Blue");
 		map.put(Color.green, "Green");

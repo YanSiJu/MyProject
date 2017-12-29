@@ -23,10 +23,12 @@ public class LineFactory extends ShapeFactory {
 	 */
 	@Override
 	public void draw(Graphics2D g) {
-		g.setStroke(getStroke());// 设置画笔的粗细
+		// 设置画笔的粗细
+		g.setStroke(getStroke());
 		// 设置画笔颜色
 		c.setGraphicsColor(g);
-		g.drawLine(getX1(), getY1(), getX2(), getY2());// 绘制直线
+		// 绘制直线
+		g.drawLine(getX1(), getY1(), getX2(), getY2());
 	}
 
 }

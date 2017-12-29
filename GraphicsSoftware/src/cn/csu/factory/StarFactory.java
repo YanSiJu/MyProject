@@ -19,7 +19,8 @@ public class StarFactory extends ShapeFactory {
 	}
 
 	public void draw(Graphics2D g) {
-		g.setStroke(new BasicStroke());// 画笔大小
+		// 画笔大小
+		g.setStroke(new BasicStroke());
 		// 设置画笔颜色
 		c.setGraphicsColor(g);
 		x = (Math.abs(getX2() - getX1())) / 8;
@@ -48,15 +49,10 @@ public class StarFactory extends ShapeFactory {
 		g.drawLine(a1, b1, a4, b4);
 		g.drawLine(a2, b2, a3, b3);
 		g.drawLine(a2, b2, a6, b6);
-		// g.drawLine(a3, b3, a4, b4);
-		// g.drawLine(a3, b3, a6, b6);
 		g.drawLine(a4, b4, a5, b5);
-		// g.drawLine(a4, b4, a7, b7);
 		g.drawLine(a5, b5, a7, b7);
-		// g.drawLine(a6, b6, a8, b8);
 		g.drawLine(a6, b6, a9, b9);
 		g.drawLine(a7, b7, a10, b10);
-		// g.drawLine(a7, b7, a8, b8);
 		g.drawLine(a8, b8, a10, b10);
 		g.drawLine(a8, b8, a9, b9);
 
