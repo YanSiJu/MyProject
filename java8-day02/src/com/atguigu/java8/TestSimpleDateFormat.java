@@ -1,8 +1,10 @@
 package com.atguigu.java8;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -13,7 +15,7 @@ public class TestSimpleDateFormat {
 	
 	public static void main(String[] args) throws Exception {
 		
-		/*SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		
 		Callable<Date> task = new Callable<Date>() {
 
@@ -36,7 +38,7 @@ public class TestSimpleDateFormat {
 			System.out.println(future.get());
 		}
 		
-		pool.shutdown();*/
+		pool.shutdown();
 		
 		//解决多线程安全问题
 		/*Callable<Date> task = new Callable<Date>() {
@@ -64,7 +66,7 @@ public class TestSimpleDateFormat {
 		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
 		
-		Callable<LocalDate> task = new Callable<LocalDate>() {
+		Callable<LocalDate> t = new Callable<LocalDate>() {
 
 			@Override
 			public LocalDate call() throws Exception {
@@ -74,19 +76,19 @@ public class TestSimpleDateFormat {
 			
 		};
 
-		ExecutorService pool = Executors.newFixedThreadPool(10);
+		ExecutorService p = Executors.newFixedThreadPool(10);
 		
-		List<Future<LocalDate>> results = new ArrayList<>();
+		List<Future<LocalDate>> result = new ArrayList<>();
 		
 		for (int i = 0; i < 10; i++) {
-			results.add(pool.submit(task));
+			result.add(p.submit(t));
 		}
 		
-		for (Future<LocalDate> future : results) {
+		for (Future<LocalDate> future : result) {
 			System.out.println(future.get());
 		}
 		
-		pool.shutdown();
+		p.shutdown();
 	}
 
 }
