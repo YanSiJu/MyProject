@@ -7,7 +7,6 @@ public class Storage {
 	}
 
 	public boolean check() {
-//		System.out.println("¼ì²âÄÚ´æ....");
 		return true;
 		
 	}

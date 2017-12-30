@@ -7,7 +7,6 @@ public class CPU {
 	}
 
 	public boolean run() {
-
 		return true;
 	}
 

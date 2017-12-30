@@ -7,7 +7,6 @@ public class Disk {
 	}
 
 	public boolean read(){
-//		System.out.println("∂¡»°”≤≈Ã...");
 		return true;
 		
 	}

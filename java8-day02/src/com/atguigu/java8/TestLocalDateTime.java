@@ -98,7 +98,7 @@ public class TestLocalDateTime {
 		
 		Instant ins2 = Instant.now();
 		
-		System.out.println("所耗费时间为：" + Duration.between(ins1, ins2));
+		System.out.println("所耗费时间为：" + Duration.between(ins1, ins2).getSeconds());
 		
 		System.out.println("----------------------------------");
 		
