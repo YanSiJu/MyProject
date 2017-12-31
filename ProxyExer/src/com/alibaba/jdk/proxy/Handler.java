@@ -25,7 +25,7 @@ public class Handler implements InvocationHandler {
 		System.out.println("----->:" + Proxy.isProxyClass(proxy.getClass()));
 		// 前置通知
 		preRequest();
-		// 调用目标方法
+		// 调用目标方法,使用成员变量target,而不是形参中的proxy
 		Object result = method.invoke(target, args);
 		// 后置通知
 		postRequest();

@@ -28,7 +28,7 @@ public class Interceptor implements MethodInterceptor {
 	public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
 		// 前置通知
 		preRequest();
-		// 调用目标方法
+		// 调用目标方法,使用形参中的proxy,而不是成员变量target
 		Object result = methodProxy.invokeSuper(proxy, args);
 		// 后置通知
 		postRequest();

@@ -3,6 +3,7 @@ package com.alibaba.cglib;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.util.Optional;
 import java.util.Properties;
 import net.sf.cglib.proxy.CallbackFilter;
 
@@ -38,7 +39,7 @@ public class CallbackFilterImpl implements CallbackFilter {
 
 	@Override
 	public int accept(Method method) {
-		if (methodName != null && !methodName.equals(method.getName())) {
+		if (Optional.ofNullable(methodName).orElse("").equals(method.getName())) {
 			return 1;
 		}
 		return 0;

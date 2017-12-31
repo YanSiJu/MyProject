@@ -47,7 +47,7 @@ public class LocalDateTimeTest {
 
 	@Test
 	public void formatTest() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY年MM月dd日 ");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY年MM月dd日");
 		LocalDate today = LocalDate.now();
 		String dateStr = today.format(dtf);
 		System.out.println("dateStr:" + dateStr);
@@ -56,11 +56,34 @@ public class LocalDateTimeTest {
 		DateTimeFormatter dateTimeformatter = DateTimeFormatter.ofPattern("YYYY年MM月dd日  HH:mm:ss");
 		LocalDateTime dateTime = LocalDateTime.now();
 		System.out.println("dateTimeStr:" + dateTime.format(dateTimeformatter));
-		
+
 		System.out.println("----------------------------------------\n");
 		DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern(" HH:mm:ss");
 		LocalTime time = LocalTime.now();
 		System.out.println("dateTimeStr:" + time.format(timeformatter));
+
+	}
+
+	@Test
+	public void format() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
+		String dateStr = "1952年07月06日";
+		LocalDate date = LocalDate.parse(dateStr, dtf);
+		System.out.println("date:" + date);
+
+		System.out.println("-------------------------------------\n");
+
+		String str = "1952年07月06日 07:30:52";
+		DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH:mm:ss");
+		LocalDateTime dateTime = LocalDateTime.parse(str, timeFormatter);
+		System.out.println("dateTime:" + dateTime);
+
+		System.out.println("-------------------------------------\n");
+
+		String timeStr = "07:30:52";
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss");
+		LocalTime time = LocalTime.parse(timeStr, fmt);
+		System.out.println("time:" + time);
 
 	}
 }

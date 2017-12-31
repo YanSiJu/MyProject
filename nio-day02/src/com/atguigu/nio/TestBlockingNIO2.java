@@ -18,7 +18,7 @@ public class TestBlockingNIO2 {
 	public void client() throws IOException{
 		SocketChannel sChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 9898));
 		
-		FileChannel inChannel = FileChannel.open(Paths.get("1.jpg"), StandardOpenOption.READ);
+		FileChannel inChannel = FileChannel.open(Paths.get("Java8 API.chm"), StandardOpenOption.READ);
 		
 		ByteBuffer buf = ByteBuffer.allocate(1024);
 		
@@ -47,7 +47,7 @@ public class TestBlockingNIO2 {
 	public void server() throws IOException{
 		ServerSocketChannel ssChannel = ServerSocketChannel.open();
 		
-		FileChannel outChannel = FileChannel.open(Paths.get("2.jpg"), StandardOpenOption.WRITE, StandardOpenOption.CREATE);
+		FileChannel outChannel = FileChannel.open(Paths.get("API.chm"), StandardOpenOption.WRITE, StandardOpenOption.CREATE);
 		
 		ssChannel.bind(new InetSocketAddress(9898));
 		

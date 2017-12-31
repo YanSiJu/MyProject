@@ -17,7 +17,7 @@ public class TestFileOutputStream {
 			File file = new File("Test.txt");
 			out = new FileOutputStream(file);
 			out.write("Java Linux \nUnix Hello,spring!! \n\n Fire!!".getBytes());
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -25,7 +25,6 @@ public class TestFileOutputStream {
 				try {
 					out.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		}

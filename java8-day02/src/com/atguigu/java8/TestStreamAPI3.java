@@ -5,6 +5,7 @@ import java.util.DoubleSummaryStatistics;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -49,7 +50,7 @@ public class TestStreamAPI3 {
 						return 0;
 				}).reduce(Integer::sum);
 
-		System.out.println(sum.get());
+		System.out.println(sum.orElse(0));
 	}
 
 	// collect——将流转换为其他形式。接收一个 Collector接口的实现，用于给Stream中元素做汇总的方法
@@ -82,7 +83,7 @@ public class TestStreamAPI3 {
 		Optional<Employee> op = emps.stream()
 				.collect(Collectors.minBy((e1, e2) -> Double.compare(e1.getSalary(), e2.getSalary())));
 
-		System.out.println(op.get());
+		System.out.println(op.orElse(new Employee()));
 
 		Double sum = emps.stream().collect(Collectors.summingDouble(Employee::getSalary));
 
@@ -108,7 +109,6 @@ public class TestStreamAPI3 {
 	public void test5() {
 		Map<Status, List<Employee>> map = emps.stream().collect(Collectors.groupingBy(Employee::getStatus));
 
-		
 		System.out.println(map);
 	}
 
@@ -134,7 +134,11 @@ public class TestStreamAPI3 {
 		Map<Boolean, List<Employee>> map = emps.stream()
 				.collect(Collectors.partitioningBy((e) -> e.getSalary() >= 5000));
 
-		System.out.println(map);
+		Set<Entry<Boolean, List<Employee>>> entry = map.entrySet();
+		for (Entry<Boolean, List<Employee>> e : entry) {
+			System.out.println(e.getKey() + " = " + e.getValue());
+		}
+		// System.out.println(map);
 	}
 
 	//
@@ -149,6 +153,6 @@ public class TestStreamAPI3 {
 	public void test9() {
 		Optional<Double> sum = emps.stream().map(Employee::getSalary).collect(Collectors.reducing(Double::sum));
 
-		System.out.println(sum.get());
+		System.out.println(sum.orElse(0D));
 	}
 }
