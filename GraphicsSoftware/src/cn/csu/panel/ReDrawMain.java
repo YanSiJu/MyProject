@@ -61,7 +61,7 @@ public class ReDrawMain extends JPanel {
 		panel1.setBackground(Color.gray);
 		frame.add(panel1, BorderLayout.NORTH);
 
-		String[] str1 = { "铅笔", "刷子", "喷枪", "吸管", "橡皮" };
+		String[] str1 = { "铅笔", "刷子", "缩放", "吸管", "橡皮" };
 		for (int i = 0; i < str1.length; i++) {
 			JButton button_1 = new JButton(str1[i]);
 			panel1.add(button_1);
@@ -75,7 +75,7 @@ public class ReDrawMain extends JPanel {
 		panel2.setBackground(Color.gray);
 		frame.add(panel2, BorderLayout.WEST);
 
-		String[] str2 = { "直线", "填充圆", "文字", "图片", "圆角矩形", "填充矩形", "3d矩形", "五角星", "任意多边形" };
+		String[] str2 = { "直线", "填充圆", "文字", "圆角矩形", "填充矩形", "3d矩形" };
 
 		for (int i = 0; i < str2.length; i++) {
 			JButton button_2 = new JButton(str2[i]);
@@ -136,7 +136,7 @@ public class ReDrawMain extends JPanel {
 	public void paint(Graphics gr) {
 		super.paint(gr);// 调用父类的paint（）
 		/*
-		 * 从数组中获取Shape对象 判断shape是否不为空 如果不为空则调用调用绘制图形的方法
+		 * 从数组中获取Shape对象 判断shape是否不为空 如果不为空则调用绘制图形的方法
 		 */
 		for (int i = 0; i < shapeArray.length; i++) {
 
@@ -145,5 +145,6 @@ public class ReDrawMain extends JPanel {
 				shape.draw((Graphics2D) gr);
 
 		}
+//		System.out.println("paint");
 	}
 }

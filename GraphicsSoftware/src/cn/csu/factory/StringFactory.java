@@ -22,9 +22,9 @@ public class StringFactory extends ShapeFactory {
 		// 画笔大小
 		g.setStroke(new BasicStroke());
 		// 设置画笔颜色
-		c.setGraphicsColor(g);
+		color.setGraphicsColor(g);
 		// 文字
-		g.drawString(str, getX1(), getY1());
+		g.drawString(str, getX(), getY());
 
 	}
 

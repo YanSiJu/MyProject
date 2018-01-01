@@ -31,9 +31,9 @@ public class RoundRectFactory extends ShapeFactory {
 		// 设置画笔的粗细
 		g.setStroke(getStroke());
 		// 设置画笔颜色
-		c.setGraphicsColor(g);
+		color.setGraphicsColor(g);
 		// 绘制矩形
-		g.drawRoundRect(getX1(), getY1(), getX2(), getY2(), arcW, arcH);
+		g.drawRoundRect(getX(), getY(), getW(), getH(), arcW, arcH);
 	}
 
 }

@@ -9,47 +9,49 @@ import cn.csu.bridge.IColor;
 
 public abstract class ShapeFactory {
 
-	private int x1, y1, x2, y2;
-	private String color;
+	private int x;
+	private int y;
+	private int w;
+	private int h;
+	private String colorstr;
 	private BasicStroke stroke;
-	protected IColor c;
+	protected IColor color;
 
 	/**
 	 * @return the color
 	 */
 	protected IColor getColor() {
-		return c;
+		return color;
 	}
 
 	private void setG() {
-		Optional<String> op = Optional.ofNullable(color);
+		Optional<String> op = Optional.ofNullable(colorstr);
 		try {
 			Class<?> clazz = Class.forName("cn.csu.bridge." + op.orElse("Black"));
-			c = (IColor) clazz.newInstance();
+			color = (IColor) clazz.newInstance();
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public ShapeFactory(DrawListenerner listenerner) {
-		this.x1 = listenerner.getX1();
-		this.y1 = listenerner.getY1();
-		this.x2 = listenerner.getX2();
-		this.y2 = listenerner.getY2();
-		this.color = listenerner.getColorStr();
+		this.x = listenerner.getX1();
+		this.y = listenerner.getY1();
+		this.w = listenerner.getX2();
+		this.h = listenerner.getY2();
+		this.colorstr = listenerner.getColorStr();
 		setG();
 	}
 
 	public ShapeFactory(int x1, int y1, int x2, int y2, String colorStr, BasicStroke stroke) {
-		this.x1 = x1;
-		this.y1 = y1;
-		this.x2 = x2;
-		this.y2 = y2;
+		this.x = x1;
+		this.y = y1;
+		this.w = x2;
+		this.h = y2;
 		this.stroke = stroke;
-		this.color = colorStr;
+		this.colorstr = colorStr;
 		setG();
 	}
-
 
 	/**
 	 * 绘制图形的方法
@@ -58,20 +60,20 @@ public abstract class ShapeFactory {
 	 */
 	public abstract void draw(Graphics2D g);
 
-	protected int getX1() {
-		return x1;
+	public int getX() {
+		return x;
 	}
 
-	protected int getY1() {
-		return y1;
+	public int getY() {
+		return y;
 	}
 
-	protected  int getX2() {
-		return x2;
+	public int getW() {
+		return w;
 	}
 
-	protected int getY2() {
-		return y2;
+	public int getH() {
+		return h;
 	}
 
 	protected BasicStroke getStroke() {
@@ -80,6 +82,34 @@ public abstract class ShapeFactory {
 
 	protected void setStroke(BasicStroke stroke) {
 		this.stroke = stroke;
+	}
+
+	/**
+	 * @param x the x to set
+	 */
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	/**
+	 * @param y the y to set
+	 */
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	/**
+	 * @param w the w to set
+	 */
+	public void setW(int w) {
+		this.w = w;
+	}
+
+	/**
+	 * @param h the h to set
+	 */
+	public void setH(int h) {
+		this.h = h;
 	}
 
 }

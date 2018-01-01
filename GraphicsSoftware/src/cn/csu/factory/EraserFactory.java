@@ -18,8 +18,7 @@ public class EraserFactory extends ShapeFactory {
 		g.setStroke(new BasicStroke(20));// ÏðÆ¤´óÐ¡
 		JFrame frame = new JFrame();
 		g.setColor(frame.getBackground());
-		g.drawLine(getX1(), getY1(), getX2(), getY2());
-
+		g.drawLine(getX(), getY(), getW(), getH());
 	}
 
 }

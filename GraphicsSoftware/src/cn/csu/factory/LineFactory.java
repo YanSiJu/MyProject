@@ -26,9 +26,9 @@ public class LineFactory extends ShapeFactory {
 		// 设置画笔的粗细
 		g.setStroke(getStroke());
 		// 设置画笔颜色
-		c.setGraphicsColor(g);
+		color.setGraphicsColor(g);
 		// 绘制直线
-		g.drawLine(getX1(), getY1(), getX2(), getY2());
+		g.drawLine(getX(), getY(), getW(), getH());
 	}
 
 }

@@ -4,25 +4,25 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Random;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import cn.csu.factory.ShapeFactory;
-import cn.csu.factory.ThreeDRectFactory;
 import cn.csu.factory.CircleFactory;
 import cn.csu.factory.EraserFactory;
 import cn.csu.factory.FilledRectFactory;
-import cn.csu.factory.GumFactory;
-import cn.csu.factory.ImageFactory;
 import cn.csu.factory.LineFactory;
 import cn.csu.factory.RoundRectFactory;
-import cn.csu.factory.StarFactory;
+import cn.csu.factory.ShapeFactory;
 import cn.csu.factory.StringFactory;
+import cn.csu.factory.ThreeDRectFactory;
 
 public class DrawListenerner implements ActionListener, MouseListener, MouseMotionListener {
 
@@ -30,6 +30,8 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	private Color color = Color.black;// 声明颜色属性，用来存储用户选择的颜色
 	private Graphics g;// 声明Graphics画笔类的对象
 	private int count = 0;
+	private int moveX;
+	private int moveY;
 	private int t2;
 	private int t1;
 	private int t3;
@@ -42,8 +44,7 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	private ShapeFactory[] shapeArray;// 声明存储图形对象的数组
 	private int number = 0;// 记录器，用来记录已经存储的图形个数。
 	private String colorStr;
-	@SuppressWarnings("unused")
-	private JPanel panel4;
+	private JPanel panel;
 	Random r = new Random();
 	public BasicStroke s1;// 画笔大小
 	BasicStroke s = new BasicStroke();
@@ -54,9 +55,9 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	 * @param g是从DrawMain类的窗体上传递过来的画笔对象
 	 * @param shapeArray是从DrawMain类传递过来的存储图形的数组对象
 	 */
-	public DrawListenerner(JPanel panel4, ShapeFactory[] shapeArray) {
-		this.panel4 = panel4;
+	public DrawListenerner(JPanel panel, ShapeFactory[] shapeArray) {
 		this.shapeArray = shapeArray;
+		this.panel = panel;
 	}
 
 	public void setG(Graphics g) {
@@ -69,6 +70,46 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			// 将图形对象存入到数组中
 			shapeArray[number++] = shape;
 		}
+	}
+
+	public void t(int thisX, int thisY) {
+		if ((moveY - thisY < 20 && moveY - thisY > 0) || (moveY - thisY < 0 && moveY - thisY > -20)) {
+			// Y 在20范围内移动认为是水平移动
+			if (moveX < thisX) {
+				// right
+				for (int i = 0; i < number; i++) {
+					shapeArray[i].setW(shapeArray[i].getW() + 10);
+					// shapeArray[i].draw(g2d);
+					// panel.repaint();
+				}
+			} else {
+				// left
+				for (int i = 0; i < number; i++) {
+					shapeArray[i].setW(shapeArray[i].getW() - 10);
+					// shapeArray[i].draw(g2d);
+					// panel.repaint();
+				}
+			}
+		} else {
+			if (moveX < thisX) {
+				// 右下
+				for (int i = 0; i < number; i++) {
+					shapeArray[i].setW(shapeArray[i].getW() + 10);
+					shapeArray[i].setH(shapeArray[i].getH() + 10);
+					// shapeArray[i].draw(g2d);
+					// panel.repaint();
+				}
+			} else {
+				// 左上
+				for (int i = 0; i < number; i++) {
+					shapeArray[i].setW(shapeArray[i].getW() - 10);
+					shapeArray[i].setH(shapeArray[i].getH() - 10);
+					// shapeArray[i].draw(g2d);
+					panel.repaint();
+				}
+			}
+		}
+		panel.repaint();
 	}
 
 	/**
@@ -96,7 +137,11 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 		// 2.在重写的按下动作和释放动作的事件处理方法中，在按下方法中获取按下坐标值
 		x1 = e.getX();
 		y1 = e.getY();
-
+		if (type.equals("缩放")) {
+			Point point = MouseInfo.getPointerInfo().getLocation();
+			moveX = point.x;
+			moveY = point.y;
+		}
 	}
 
 	/**
@@ -114,44 +159,21 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			shape = new LineFactory(this);
 			// 调用图形的绘图方法
 			shape.draw((Graphics2D) g);
-		} else if (type.equals("任意多边形")) {
-
-			if (count == 0) {
-				shape = new LineFactory(this);
-				// 调用图形的绘图方法
-				shape.draw((Graphics2D) g);
-				count++;
-				t1 = x1;
-				t2 = y1;
-			}
-
-			else if (count != 0) {
-				shape = new LineFactory(t3, t4, x2, y2, colorStr, new BasicStroke(1));// 点击鼠标该点与前一个点相连
-				// 调用图形的绘图方法
-				shape.draw((Graphics2D) g);
-				if (e.getClickCount() == 2) {// 双击鼠标则闭合线段，该最新的点与最早的点相连接，闭合图形
-					shape = new LineFactory(t1, t2, x2, y2, colorStr, new BasicStroke(1));
-					shape.draw((Graphics2D) g);
-					count = 0;
-				}
-				// 记录目前该点的位置
-			}
-			t3 = x2;
-			t4 = y2;
+			saveShape();
+		} else if (type.equals("缩放")) {
+			Point point = MouseInfo.getPointerInfo().getLocation();
+			int thisX = point.x;
+			int thisY = point.y;
+			t(thisX, thisY);
 		} else if (type.equals("圆角矩形")) {
 			shape = new RoundRectFactory(this, 30, 30);
 			shape.draw((Graphics2D) g);
+			saveShape();
 		} else if (type.equals("填充圆")) {
 			shape = new CircleFactory(this);
 			shape.draw((Graphics2D) g);
-		} else if (type.equals("五角星")) {
-			shape = new StarFactory(this);
-			shape.draw((Graphics2D) g);
-			System.out.println(">>>>>>>>>" + x1 + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + y1);
-
+			saveShape();
 		}
-
-		saveShape();
 	}
 
 	/**
@@ -163,46 +185,33 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 		y2 = e.getY();
 		Graphics2D g2d = (Graphics2D) g;
 		if (type.equals("铅笔")) {
-
 			// 根据数据来实例化图形对象
 			shape = new LineFactory(this);
 			// 调用图形的绘图方法
-			shape.draw((Graphics2D) g);
+			shape.draw(g2d);
 			x1 = x2;
 			y1 = y2;
-		} /*
-			 * else if (type.equals("刷子")) {
-			 * 
-			 * // 根据数据来实例化图形对象 shape = new LineFactory(x1, y1, x2, y2, color, new
-			 * BasicStroke(10)); // 调用图形的绘图方法 shape.draw((Graphics2D) g);
-			 * 
-			 * if (number < shapeArray.length) { // 将图形对象存入到数组中 shapeArray[number++] =
-			 * shape; } x1 = x2; y1 = y2; }
-			 */ else if (type.equals("喷枪")) {
-			g2d.setColor(color);
-			shape = new GumFactory(this);
-			shape.draw((Graphics2D) g);
-			x1 = x2;
-			y1 = y2;
+			saveShape();
 		} else if (type.equals("橡皮")) {
 			shape = new EraserFactory(this);
-			shape.draw((Graphics2D) g);
+			shape.draw(g2d);
 			x1 = x2;
 			y1 = y2;
-		} else if (type.equals("图片")) {
-			shape = new ImageFactory(this);
-			shape.draw((Graphics2D) g);
+			saveShape();
 		} else if (type.equals("填充矩形")) {
 			shape = new FilledRectFactory(this);
-			shape.draw((Graphics2D) g);
+			shape.draw(g2d);
+			saveShape();
 		} else if (type.equals("文字")) {
 			shape = new StringFactory(this);
-			shape.draw((Graphics2D) g);
-		} else if (type.equals("3d矩形")) {// 7.3d矩形
+			shape.draw(g2d);
+			saveShape();
+		} else if (type.equals("3d矩形")) {
 			shape = new ThreeDRectFactory(this);
-			shape.draw((Graphics2D) g);
+			shape.draw(g2d);
+			saveShape();
 		}
-		saveShape();
+
 	}
 
 	/**

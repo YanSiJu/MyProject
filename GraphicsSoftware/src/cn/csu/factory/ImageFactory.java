@@ -2,8 +2,9 @@ package cn.csu.factory;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import javax.swing.ImageIcon;
-
+import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import cn.csu.Listenerner.DrawListenerner;
 
 public class ImageFactory extends ShapeFactory {
@@ -13,15 +14,27 @@ public class ImageFactory extends ShapeFactory {
 
 	}
 
-	public ImageFactory(DrawListenerner listenerner) {
+	private JPanel panel;
+
+	public ImageFactory(DrawListenerner listenerner, JPanel panel) {
 		super(listenerner);
-		
+		this.panel = panel;
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-		ImageIcon im = new ImageIcon("C:\\Users\\某某\\Desktop\\路线\\1.jpg");// 画出图片
-		g.drawImage(im.getImage(), getX1(), getY1(), getX2() - getX1(), getY2() - getY1(), null);// 释放鼠标画出图片
+
+		JFileChooser chooser = new JFileChooser();
+		chooser.setMultiSelectionEnabled(true);
+		chooser.setSize(1000, 900);
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
+		// 设置文件类型
+		chooser.setFileFilter(filter);
+		// 打开选择器面板
+		int returnVal = chooser.showOpenDialog(this.panel);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			System.out.println(chooser.getSelectedFile().getPath());
+		}
 	}
 
 }

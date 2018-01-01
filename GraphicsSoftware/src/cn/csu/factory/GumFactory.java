@@ -21,12 +21,12 @@ public class GumFactory extends ShapeFactory {
 	public void draw(Graphics2D g){
 		g.setStroke(new BasicStroke(1));
 		g.setColor(g.getColor());
-		g.drawLine(getX2(),getY2 (),getX2(),getY2());
+		g.drawLine(getW(),getH (),getW(),getH());
 		for (int i = 0; i < 10; i++) {
 			int p = r.nextInt(10);
 			int q = r.nextInt(10); // 可以生成一个介于0(包含)到n(不包含)之间的整数
 									// nextInt(10)生成的就是0~10之间的随机数，包含0和10
-			g.drawLine(getX2() + p, getY2() + q, getX2() + p, getY2() + q);
+			g.drawLine(getW() + p, getH() + q, getW() + p, getH() + q);
 		}
 	}
 

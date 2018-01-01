@@ -20,8 +20,8 @@ public class ThreeDRectFactory extends ShapeFactory {
 		// 画笔大小
 		g.setStroke(g.getStroke());
 		// 设置画笔颜色
-		c.setGraphicsColor(g);
-		g.fill3DRect(getX1(), getY1(), getX2() - getX1(), getY2() - getY1(), true);
+		color.setGraphicsColor(g);
+		g.fill3DRect(getX(), getY(), getW() - getX(), getH() - getY(), true);
 	}
 
 }

@@ -23,9 +23,9 @@ public class FilledRectFactory extends ShapeFactory {
 		// 设置画笔的粗细
 		g.setStroke(getStroke());
 		// 设置画笔颜色
-		c.setGraphicsColor(g);
+		color.setGraphicsColor(g);
 		// 绘制矩形
-		g.fillRect(getX1(), getY1(), getX2(), getY2());
+		g.fillRect(getX(), getY(), getW(), getH());
 	}
 
 }

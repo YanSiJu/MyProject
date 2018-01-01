@@ -33,7 +33,7 @@ public class App extends JFrame implements ActionListener, MouseListener {
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setSize(400, 300);
+		setSize(2500,1000);
 		setResizable(false);
 		getContentPane().setLayout(null);
 
@@ -56,6 +56,7 @@ public class App extends JFrame implements ActionListener, MouseListener {
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser chooser = new JFileChooser();
 		chooser.setMultiSelectionEnabled(true);
+		chooser.setSize(1000, 900);
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
 		// 设置文件类型
 		chooser.setFileFilter(filter);
@@ -63,6 +64,7 @@ public class App extends JFrame implements ActionListener, MouseListener {
 		int returnVal = chooser.showOpenDialog(this);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			selectedFiles = chooser.getSelectedFiles();
+			System.out.println(chooser.getSelectedFile().getPath());
 			repaint();
 		}
 	}
@@ -125,13 +127,14 @@ public class App extends JFrame implements ActionListener, MouseListener {
 		 */
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void paint(Graphics g) {
 			super.paint(g);
-
 			if (selectedFiles != null) {
 				ImageIcon icon = new ImageIcon(selectedFiles[fileIndex].getPath());
 				g.drawImage(icon.getImage(), 0, 0, width, height, this);
 			}
+			System.out.println("------>paint!!");
 		}
 	}
 }
