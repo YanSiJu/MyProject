@@ -15,13 +15,13 @@ import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 import cn.csu.factory.CircleFactory;
 import cn.csu.factory.EraserFactory;
 import cn.csu.factory.FilledRectFactory;
 import cn.csu.factory.LineFactory;
 import cn.csu.factory.RoundRectFactory;
 import cn.csu.factory.ShapeFactory;
-import cn.csu.factory.StringFactory;
 import cn.csu.factory.ThreeDRectFactory;
 
 public class DrawListenerner implements ActionListener, MouseListener, MouseMotionListener {
@@ -70,9 +70,77 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			// 将图形对象存入到数组中
 			shapeArray[number++] = shape;
 		}
+
 	}
 
-	public void t(int thisX, int thisY) {
+	public int rangeJudge() {
+
+		for (int i = 0; i < number; i++) {
+			if (shapeArray[i] instanceof CircleFactory) {
+				if (moveX < shapeArray[i].getX() + shapeArray[i].getW() && moveX > shapeArray[i].getX()) {
+					if (moveY < shapeArray[i].getY() + shapeArray[i].getH() && moveY > shapeArray[i].getY()) {
+						return i;
+					}
+				}
+			} else if (shapeArray[i] instanceof RoundRectFactory) {
+				if (moveX < shapeArray[i].getX() + shapeArray[i].getW() && moveX > shapeArray[i].getX() + 1) {
+					if (moveY < shapeArray[i].getY() + shapeArray[i].getH() && moveY > shapeArray[i].getY()) {
+						return i;
+					}
+				}
+			} else if (shapeArray[i] instanceof ThreeDRectFactory) {
+				if (moveX < shapeArray[i].getX() + shapeArray[i].getW() + 1 && moveX > shapeArray[i].getX()) {
+					if (moveY < shapeArray[i].getY() + shapeArray[i].getH() + 1 && moveY > shapeArray[i].getY()) {
+						return i;
+					}
+				}
+			} else if (shapeArray[i] instanceof EraserFactory || shapeArray[i] instanceof LineFactory) {
+
+				if ((shapeArray[i].getW() - shapeArray[i].getX())
+						/ (shapeArray[i].getH() - shapeArray[i].getY()) == (moveX - shapeArray[i].getX())
+								/ (moveY - shapeArray[i].getY())) {
+					return i;
+				}
+			} else if (shapeArray[i] instanceof FilledRectFactory) {
+				if (moveX < shapeArray[i].getX() + shapeArray[i].getW() - 1 && moveX > shapeArray[i].getX()) {
+					if (moveY < shapeArray[i].getY() + shapeArray[i].getH() - 1 && moveY > shapeArray[i].getY()) {
+						return i;
+					}
+				}
+			}
+		}
+		return -1;
+
+	}
+
+	public void z(int thisX, int thisY, int i) {
+		if (i < 0 || i >= shapeArray.length) {
+			return;
+		}
+		if ((moveY - thisY < 20 && moveY - thisY > 0) || (moveY - thisY < 0 && moveY - thisY > -20)) {
+			// Y 在20范围内移动认为是水平移动
+			if (moveX < thisX) {
+				// right
+				shapeArray[i].setW(shapeArray[i].getW() + 20);
+			} else {
+				// left
+				shapeArray[i].setW(shapeArray[i].getW() - 20);
+			}
+		} else {
+			if (moveX < thisX) {
+				// 右下
+				shapeArray[i].setW(shapeArray[i].getW() + 20);
+				shapeArray[i].setH(shapeArray[i].getH() + 20);
+			} else {
+				// 左上
+				shapeArray[i].setW(shapeArray[i].getW() - 20);
+				shapeArray[i].setH(shapeArray[i].getH() - 20);
+			}
+		}
+		panel.repaint();
+	}
+
+	public void zoom(int thisX, int thisY) {
 		if ((moveY - thisY < 20 && moveY - thisY > 0) || (moveY - thisY < 0 && moveY - thisY > -20)) {
 			// Y 在20范围内移动认为是水平移动
 			if (moveX < thisX) {
@@ -122,10 +190,8 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 		if (text == null || text.equals("")) {// 判断是否点击的是颜色按钮
 			color = button.getBackground();// 获取按钮的背景颜色
 			colorStr = button.getToolTipText();
-			System.out.println("color = " + color);
 		} else {
 			type = button.getText();// 获取按钮上的文字信息
-			System.out.println("text = " + text);
 		}
 	}
 
@@ -164,7 +230,9 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			Point point = MouseInfo.getPointerInfo().getLocation();
 			int thisX = point.x;
 			int thisY = point.y;
-			t(thisX, thisY);
+			System.out.println(moveX + "  " + moveY);
+			z(thisX, thisY, rangeJudge());
+			// zoom(thisX, thisY);
 		} else if (type.equals("圆角矩形")) {
 			shape = new RoundRectFactory(this, 30, 30);
 			shape.draw((Graphics2D) g);
@@ -202,11 +270,10 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			shape = new FilledRectFactory(this);
 			shape.draw(g2d);
 			saveShape();
-		} else if (type.equals("文字")) {
-			shape = new StringFactory(this);
-			shape.draw(g2d);
-			saveShape();
-		} else if (type.equals("3d矩形")) {
+		} /*
+			 * else if (type.equals("文字")) { shape = new StringFactory(this);
+			 * shape.draw(g2d); saveShape(); }
+			 */else if (type.equals("3d矩形")) {
 			shape = new ThreeDRectFactory(this);
 			shape.draw(g2d);
 			saveShape();

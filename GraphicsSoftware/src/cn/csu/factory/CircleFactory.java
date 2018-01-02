@@ -18,7 +18,6 @@ public class CircleFactory extends ShapeFactory {
 		color.setGraphicsColor(g);
 		// 绘制圆的方法
 		g.fillOval(getX(), getY(), getW() - getX(), getH() - getY());
-
 	}
 
 }

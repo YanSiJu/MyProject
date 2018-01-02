@@ -6,6 +6,15 @@ import cn.csu.Listenerner.DrawListenerner;
 
 public class ThreeDRectFactory extends ShapeFactory {
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ThreeDRectFactory [getX()=" + getX() + ", getY()=" + getY() + ", getW()=" + getW() + ", getH()="
+				+ getH() + "]";
+	}
+
 	public ThreeDRectFactory(int x1, int y1, int x2, int y2, String color, BasicStroke s) {
 		super(x1, y1, x2, y2, color, s);
 

@@ -28,4 +28,13 @@ public class FilledRectFactory extends ShapeFactory {
 		g.fillRect(getX(), getY(), getW(), getH());
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "FilledRectFactory [getX()=" + getX() + ", getY()=" + getY() + ", getW()=" + getW() + ", getH()="
+				+ getH() + "]";
+	}
+
 }

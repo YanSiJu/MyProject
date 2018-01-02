@@ -75,7 +75,7 @@ public class ReDrawMain extends JPanel {
 		panel2.setBackground(Color.gray);
 		frame.add(panel2, BorderLayout.WEST);
 
-		String[] str2 = { "直线", "填充圆", "文字", "圆角矩形", "填充矩形", "3d矩形" };
+		String[] str2 = { "直线", "填充圆", "圆角矩形", "填充矩形", "3d矩形" };
 
 		for (int i = 0; i < str2.length; i++) {
 			JButton button_2 = new JButton(str2[i]);
@@ -145,6 +145,5 @@ public class ReDrawMain extends JPanel {
 				shape.draw((Graphics2D) gr);
 
 		}
-//		System.out.println("paint");
 	}
 }
