@@ -1,21 +1,31 @@
 package cn.csu.Listenerner;
 
+import java.awt.AWTException;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
-
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import javax.swing.JTextField;
 import cn.csu.factory.CircleFactory;
 import cn.csu.factory.EraserFactory;
 import cn.csu.factory.FilledRectFactory;
@@ -45,6 +55,10 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	private int number = 0;// 记录器，用来记录已经存储的图形个数。
 	private String colorStr;
 	private JPanel panel;
+	@SuppressWarnings("unused")
+	private JFrame frame;
+	private String path;
+	private String name;
 	Random r = new Random();
 	public BasicStroke s1;// 画笔大小
 	BasicStroke s = new BasicStroke();
@@ -55,9 +69,10 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	 * @param g是从DrawMain类的窗体上传递过来的画笔对象
 	 * @param shapeArray是从DrawMain类传递过来的存储图形的数组对象
 	 */
-	public DrawListenerner(JPanel panel, ShapeFactory[] shapeArray) {
+	public DrawListenerner(JPanel panel, ShapeFactory[] shapeArray, JFrame frame) {
 		this.shapeArray = shapeArray;
 		this.panel = panel;
+		this.frame = frame;
 	}
 
 	public void setG(Graphics g) {
@@ -71,6 +86,81 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			shapeArray[number++] = shape;
 		}
 
+	}
+
+	public void saveImgFrame() {
+
+		JFrame frame = new JFrame();
+		// 设置文本域
+		JTextField jPathField = new JTextField(15);
+		JTextField jNameField = new JTextField(15);
+
+		// 设置文本域大小
+		jNameField.setPreferredSize(new Dimension(15, 40));
+		jPathField.setPreferredSize(new Dimension(50, 40));
+
+		jNameField.setFont(new Font("1", 20, 20));
+		jPathField.setText("C:\\\\Users\\\\Bill\\\\Desktop\\\\");
+		jPathField.setFont(new Font("C:\\Users\\Bill\\Desktop\\", 20, 20));
+
+		// 设置默认路径
+		// 设置默认文件名
+		jNameField.setText("1");
+		JLabel pathLabel = new JLabel("保存路径");
+		JLabel nameLabel = new JLabel("文件名");
+		nameLabel.setLocation(70, 50);
+
+		// 保存按钮
+		JButton button = new JButton("保存图片");
+		button.addActionListener(this);
+
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				path = jPathField.getText();
+				name = jNameField.getText();
+				save();
+			}
+		});
+
+		// 设置布局
+		frame.setLayout(new GridLayout(3, 1));
+		JPanel jp1 = new JPanel();
+		JPanel jp2 = new JPanel();
+		JPanel jp3 = new JPanel();
+
+		jp1.add(pathLabel);
+		jp1.add(jPathField);// 第一块面板添加用户名和文本框
+
+		jp2.add(nameLabel);
+		jp2.add(jNameField);// 第二块面板添加密码和密码输入框
+
+		jp3.add(button);
+
+		frame.add(jp1);
+		frame.add(jp2);
+		frame.add(jp3);
+
+		frame.setSize(500, 200);
+		frame.setLocation(1000, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.setTitle("保存文件 ");
+
+	}
+
+	public void save() {
+		BufferedImage myImage = null;
+		//
+		try {
+			myImage = new Robot().createScreenCapture(panel.getBounds());
+
+			ImageIO.write(myImage, "jpg", new File(path + "" + name + ".jpg"));
+		} catch (AWTException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public int rangeJudge() {
@@ -192,6 +282,9 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			colorStr = button.getToolTipText();
 		} else {
 			type = button.getText();// 获取按钮上的文字信息
+			if (type.equals("保存文件")) {
+				saveImgFrame();
+			}
 		}
 	}
 
@@ -208,6 +301,7 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			moveX = point.x;
 			moveY = point.y;
 		}
+
 	}
 
 	/**
@@ -230,7 +324,6 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			Point point = MouseInfo.getPointerInfo().getLocation();
 			int thisX = point.x;
 			int thisY = point.y;
-			System.out.println(moveX + "  " + moveY);
 			z(thisX, thisY, rangeJudge());
 			// zoom(thisX, thisY);
 		} else if (type.equals("圆角矩形")) {
@@ -294,6 +387,7 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
+
 	}
 
 	/**

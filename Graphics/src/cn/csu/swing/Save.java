@@ -7,7 +7,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.junit.Test;
 
-public class SaveFile {
+public class Save {
 	
 	@Test
 	public void saveFile() {  

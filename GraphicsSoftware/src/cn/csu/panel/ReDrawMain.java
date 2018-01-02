@@ -50,10 +50,10 @@ public class ReDrawMain extends JPanel {
 	public void initUI() {
 		frame.setTitle("依米的画图板");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(5000, 2000);
+		frame.setSize(4500, 2000);
 		frame.setLocationRelativeTo(null);
 
-		DrawListenerner dl = new DrawListenerner(this, shapeArray);
+		DrawListenerner listenerner = new DrawListenerner(this, shapeArray, frame);
 
 		// 北边面板（存放铅笔，喷枪等工具按钮）
 		JPanel panel1 = new JPanel();
@@ -61,12 +61,12 @@ public class ReDrawMain extends JPanel {
 		panel1.setBackground(Color.gray);
 		frame.add(panel1, BorderLayout.NORTH);
 
-		String[] str1 = { "铅笔", "刷子", "缩放", "吸管", "橡皮" };
+		String[] str1 = { "铅笔", "刷子", "缩放", "吸管", "橡皮", "保存文件" };
 		for (int i = 0; i < str1.length; i++) {
 			JButton button_1 = new JButton(str1[i]);
 			panel1.add(button_1);
 			button_1.setPreferredSize(new Dimension(110, 30));
-			button_1.addActionListener(dl);
+			button_1.addActionListener(listenerner);
 		}
 
 		// 西边面板（存放图形按钮）
@@ -81,7 +81,7 @@ public class ReDrawMain extends JPanel {
 			JButton button_2 = new JButton(str2[i]);
 			panel2.add(button_2);
 			button_2.setPreferredSize(new Dimension(120, 30));
-			button_2.addActionListener(dl);
+			button_2.addActionListener(listenerner);
 		}
 
 		JPanel panel3 = new JPanel(); // 东边面板（存放颜色按钮）
@@ -108,7 +108,7 @@ public class ReDrawMain extends JPanel {
 			button.setPreferredSize(new Dimension(50, 50));
 			button.setToolTipText(map.get(colorArray[i]));
 			// 4.将事件源按钮对象通过addActionListener()监听方法和事件处理类dl对象绑定。
-			button.addActionListener(dl);
+			button.addActionListener(listenerner);
 			panel3.add(button);
 		}
 
@@ -120,10 +120,10 @@ public class ReDrawMain extends JPanel {
 		// 从窗体上获取画笔对象
 		Graphics gr = this.getGraphics();
 
-		this.addMouseListener(dl);
-		this.addMouseMotionListener(dl);
+		this.addMouseListener(listenerner);
+		this.addMouseMotionListener(listenerner);
 
-		dl.setG(gr);
+		listenerner.setG(gr);
 
 	}
 
