@@ -61,7 +61,7 @@ public class ReDrawMain extends JPanel {
 		panel1.setBackground(Color.gray);
 		frame.add(panel1, BorderLayout.NORTH);
 
-		String[] str1 = { "铅笔", "刷子", "缩放", "吸管", "橡皮", "保存文件" };
+		String[] str1 = { "缩放", "橡皮", "保存文件" };
 		for (int i = 0; i < str1.length; i++) {
 			JButton button_1 = new JButton(str1[i]);
 			panel1.add(button_1);

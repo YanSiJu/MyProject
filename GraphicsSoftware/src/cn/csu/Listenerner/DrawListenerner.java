@@ -324,8 +324,8 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			Point point = MouseInfo.getPointerInfo().getLocation();
 			int thisX = point.x;
 			int thisY = point.y;
-			z(thisX, thisY, rangeJudge());
-			// zoom(thisX, thisY);
+			// z(thisX, thisY, rangeJudge());
+			zoom(thisX, thisY);
 		} else if (type.equals("Ô²½Ç¾ØÐÎ")) {
 			shape = new RoundRectFactory(this, 30, 30);
 			shape.draw((Graphics2D) g);
