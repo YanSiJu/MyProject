@@ -38,10 +38,6 @@ public class ReDrawMain extends JPanel {
 
 	JFrame frame = new JFrame();
 
-	public static void main(String[] args) {
-		new ReDrawMain().initUI();
-	}
-
 	private ShapeFactory[] shapeArray = new ShapeFactory[10000];
 
 	/**

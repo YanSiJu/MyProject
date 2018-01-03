@@ -151,7 +151,6 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 
 	public void save() {
 		BufferedImage myImage = null;
-		//
 		try {
 			myImage = new Robot().createScreenCapture(panel.getBounds());
 
@@ -163,72 +162,6 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 		}
 	}
 
-	public int rangeJudge() {
-
-		for (int i = 0; i < number; i++) {
-			if (shapeArray[i] instanceof CircleFactory) {
-				if (moveX < shapeArray[i].getX() + shapeArray[i].getW() && moveX > shapeArray[i].getX()) {
-					if (moveY < shapeArray[i].getY() + shapeArray[i].getH() && moveY > shapeArray[i].getY()) {
-						return i;
-					}
-				}
-			} else if (shapeArray[i] instanceof RoundRectFactory) {
-				if (moveX < shapeArray[i].getX() + shapeArray[i].getW() && moveX > shapeArray[i].getX() + 1) {
-					if (moveY < shapeArray[i].getY() + shapeArray[i].getH() && moveY > shapeArray[i].getY()) {
-						return i;
-					}
-				}
-			} else if (shapeArray[i] instanceof ThreeDRectFactory) {
-				if (moveX < shapeArray[i].getX() + shapeArray[i].getW() + 1 && moveX > shapeArray[i].getX()) {
-					if (moveY < shapeArray[i].getY() + shapeArray[i].getH() + 1 && moveY > shapeArray[i].getY()) {
-						return i;
-					}
-				}
-			} else if (shapeArray[i] instanceof EraserFactory || shapeArray[i] instanceof LineFactory) {
-
-				if ((shapeArray[i].getW() - shapeArray[i].getX())
-						/ (shapeArray[i].getH() - shapeArray[i].getY()) == (moveX - shapeArray[i].getX())
-								/ (moveY - shapeArray[i].getY())) {
-					return i;
-				}
-			} else if (shapeArray[i] instanceof FilledRectFactory) {
-				if (moveX < shapeArray[i].getX() + shapeArray[i].getW() - 1 && moveX > shapeArray[i].getX()) {
-					if (moveY < shapeArray[i].getY() + shapeArray[i].getH() - 1 && moveY > shapeArray[i].getY()) {
-						return i;
-					}
-				}
-			}
-		}
-		return -1;
-
-	}
-
-	public void z(int thisX, int thisY, int i) {
-		if (i < 0 || i >= shapeArray.length) {
-			return;
-		}
-		if ((moveY - thisY < 20 && moveY - thisY > 0) || (moveY - thisY < 0 && moveY - thisY > -20)) {
-			// Y 在20范围内移动认为是水平移动
-			if (moveX < thisX) {
-				// right
-				shapeArray[i].setW(shapeArray[i].getW() + 20);
-			} else {
-				// left
-				shapeArray[i].setW(shapeArray[i].getW() - 20);
-			}
-		} else {
-			if (moveX < thisX) {
-				// 右下
-				shapeArray[i].setW(shapeArray[i].getW() + 20);
-				shapeArray[i].setH(shapeArray[i].getH() + 20);
-			} else {
-				// 左上
-				shapeArray[i].setW(shapeArray[i].getW() - 20);
-				shapeArray[i].setH(shapeArray[i].getH() - 20);
-			}
-		}
-		panel.repaint();
-	}
 
 	public void zoom(int thisX, int thisY) {
 		if ((moveY - thisY < 20 && moveY - thisY > 0) || (moveY - thisY < 0 && moveY - thisY > -20)) {
@@ -324,7 +257,6 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 			Point point = MouseInfo.getPointerInfo().getLocation();
 			int thisX = point.x;
 			int thisY = point.y;
-			// z(thisX, thisY, rangeJudge());
 			zoom(thisX, thisY);
 		} else if (type.equals("圆角矩形")) {
 			shape = new RoundRectFactory(this, 30, 30);
@@ -538,3 +470,82 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	}
 
 }
+
+// public int rangeJudge() {
+//
+// for (int i = 0; i < number; i++) {
+// if (shapeArray[i] instanceof CircleFactory) {
+// if (moveX < shapeArray[i].getX() + shapeArray[i].getW() && moveX >
+// shapeArray[i].getX()) {
+// if (moveY < shapeArray[i].getY() + shapeArray[i].getH() && moveY >
+// shapeArray[i].getY()) {
+// return i;
+// }
+// }
+// } else if (shapeArray[i] instanceof RoundRectFactory) {
+// if (moveX < shapeArray[i].getX() + shapeArray[i].getW() && moveX >
+// shapeArray[i].getX() + 1) {
+// if (moveY < shapeArray[i].getY() + shapeArray[i].getH() && moveY >
+// shapeArray[i].getY()) {
+// return i;
+// }
+// }
+// } else if (shapeArray[i] instanceof ThreeDRectFactory) {
+// if (moveX < shapeArray[i].getX() + shapeArray[i].getW() + 1 && moveX >
+// shapeArray[i].getX()) {
+// if (moveY < shapeArray[i].getY() + shapeArray[i].getH() + 1 && moveY >
+// shapeArray[i].getY()) {
+// return i;
+// }
+// }
+// } else if (shapeArray[i] instanceof EraserFactory || shapeArray[i] instanceof
+// LineFactory) {
+//
+// if ((shapeArray[i].getW() - shapeArray[i].getX())
+// / (shapeArray[i].getH() - shapeArray[i].getY()) == (moveX -
+// shapeArray[i].getX())
+// / (moveY - shapeArray[i].getY())) {
+// return i;
+// }
+// } else if (shapeArray[i] instanceof FilledRectFactory) {
+// if (moveX < shapeArray[i].getX() + shapeArray[i].getW() - 1 && moveX >
+// shapeArray[i].getX()) {
+// if (moveY < shapeArray[i].getY() + shapeArray[i].getH() - 1 && moveY >
+// shapeArray[i].getY()) {
+// return i;
+// }
+// }
+// }
+// }
+// return -1;
+//
+// }
+
+
+// public void z(int thisX, int thisY, int i) {
+// if (i < 0 || i >= shapeArray.length) {
+// return;
+// }
+// if ((moveY - thisY < 20 && moveY - thisY > 0) || (moveY - thisY < 0 && moveY
+// - thisY > -20)) {
+// // Y 在20范围内移动认为是水平移动
+// if (moveX < thisX) {
+// // right
+// shapeArray[i].setW(shapeArray[i].getW() + 20);
+// } else {
+// // left
+// shapeArray[i].setW(shapeArray[i].getW() - 20);
+// }
+// } else {
+// if (moveX < thisX) {
+// // 右下
+// shapeArray[i].setW(shapeArray[i].getW() + 20);
+// shapeArray[i].setH(shapeArray[i].getH() + 20);
+// } else {
+// // 左上
+// shapeArray[i].setW(shapeArray[i].getW() - 20);
+// shapeArray[i].setH(shapeArray[i].getH() - 20);
+// }
+// }
+// panel.repaint();
+// }
