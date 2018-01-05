@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.ObjectStreamException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -39,6 +41,7 @@ public class ReDrawMain extends JPanel {
 	JFrame frame = new JFrame();
 
 	private ShapeFactory[] shapeArray = new ShapeFactory[10000];
+	private List<ShapeFactory> list = new LinkedList<>();
 
 	/**
 	 * 初始化界面的方法
@@ -49,7 +52,7 @@ public class ReDrawMain extends JPanel {
 		frame.setSize(4500, 2000);
 		frame.setLocationRelativeTo(null);
 
-		DrawListenerner listenerner = new DrawListenerner(this, shapeArray, frame);
+		DrawListenerner listenerner = new DrawListenerner(this, frame, list);
 
 		// 北边面板（存放铅笔，喷枪等工具按钮）
 		JPanel panel1 = new JPanel();

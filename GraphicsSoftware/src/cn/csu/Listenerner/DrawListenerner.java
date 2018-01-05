@@ -19,6 +19,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -51,7 +53,8 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	private int y1;
 	private int y2;
 	private ShapeFactory shape;// 声明图形对象
-	private ShapeFactory[] shapeArray;// 声明存储图形对象的数组
+	// private ShapeFactory[] shapeArray;// 声明存储图形对象的数组
+	private List<ShapeFactory> list;
 	private int number = 0;// 记录器，用来记录已经存储的图形个数。
 	private String colorStr;
 	private JPanel panel;
@@ -69,10 +72,10 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	 * @param g是从DrawMain类的窗体上传递过来的画笔对象
 	 * @param shapeArray是从DrawMain类传递过来的存储图形的数组对象
 	 */
-	public DrawListenerner(JPanel panel, ShapeFactory[] shapeArray, JFrame frame) {
-		this.shapeArray = shapeArray;
+	public DrawListenerner(JPanel panel, JFrame frame, List<ShapeFactory> list) {
 		this.panel = panel;
 		this.frame = frame;
+		this.list = list;
 	}
 
 	public void setG(Graphics g) {
@@ -81,11 +84,7 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 
 	public void saveShape() {
 
-		if (number < shapeArray.length) {
-			// 将图形对象存入到数组中
-			shapeArray[number++] = shape;
-		}
-
+		list.add(shape);
 	}
 
 	public void saveImgFrame() {
@@ -162,41 +161,37 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 		}
 	}
 
-
 	public void zoom(int thisX, int thisY) {
+		Iterator<ShapeFactory> it = list.iterator();
 		if ((moveY - thisY < 20 && moveY - thisY > 0) || (moveY - thisY < 0 && moveY - thisY > -20)) {
 			// Y 在20范围内移动认为是水平移动
 			if (moveX < thisX) {
 				// right
-				for (int i = 0; i < number; i++) {
-					shapeArray[i].setW(shapeArray[i].getW() + 10);
-					// shapeArray[i].draw(g2d);
-					// panel.repaint();
+				while (it.hasNext()) {
+					ShapeFactory s = it.next();
+					s.setW(s.getW() + 10);
 				}
 			} else {
 				// left
-				for (int i = 0; i < number; i++) {
-					shapeArray[i].setW(shapeArray[i].getW() - 10);
-					// shapeArray[i].draw(g2d);
-					// panel.repaint();
+				while (it.hasNext()) {
+					ShapeFactory s = it.next();
+					s.setW(s.getW() - 10);
 				}
 			}
 		} else {
 			if (moveX < thisX) {
 				// 右下
-				for (int i = 0; i < number; i++) {
-					shapeArray[i].setW(shapeArray[i].getW() + 10);
-					shapeArray[i].setH(shapeArray[i].getH() + 10);
-					// shapeArray[i].draw(g2d);
-					// panel.repaint();
+				while (it.hasNext()) {
+					ShapeFactory s = it.next();
+					s.setW(s.getW() + 10);
+					s.setH(s.getH() + 10);
 				}
 			} else {
 				// 左上
-				for (int i = 0; i < number; i++) {
-					shapeArray[i].setW(shapeArray[i].getW() - 10);
-					shapeArray[i].setH(shapeArray[i].getH() - 10);
-					// shapeArray[i].draw(g2d);
-					panel.repaint();
+				while (it.hasNext()) {
+					ShapeFactory s = it.next();
+					s.setW(s.getW() - 10);
+					s.setH(s.getH() - 10);
 				}
 			}
 		}
@@ -421,13 +416,6 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 	}
 
 	/**
-	 * @return the shapeArray
-	 */
-	public ShapeFactory[] getShapeArray() {
-		return shapeArray;
-	}
-
-	/**
 	 * @return the number
 	 */
 	public int getNumber() {
@@ -520,7 +508,6 @@ public class DrawListenerner implements ActionListener, MouseListener, MouseMoti
 // return -1;
 //
 // }
-
 
 // public void z(int thisX, int thisY, int i) {
 // if (i < 0 || i >= shapeArray.length) {
