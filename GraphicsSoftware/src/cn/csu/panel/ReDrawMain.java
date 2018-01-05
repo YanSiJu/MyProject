@@ -7,14 +7,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.ObjectStreamException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import cn.csu.Listenerner.DrawListenerner;
 import cn.csu.factory.ShapeFactory;
 
@@ -40,7 +39,6 @@ public class ReDrawMain extends JPanel {
 
 	JFrame frame = new JFrame();
 
-	private ShapeFactory[] shapeArray = new ShapeFactory[10000];
 	private List<ShapeFactory> list = new LinkedList<>();
 
 	/**
@@ -137,12 +135,12 @@ public class ReDrawMain extends JPanel {
 		/*
 		 * 从数组中获取Shape对象 判断shape是否不为空 如果不为空则调用绘制图形的方法
 		 */
-		for (int i = 0; i < shapeArray.length; i++) {
-
-			ShapeFactory shape = shapeArray[i];
-			if (shape != null)//
-				shape.draw((Graphics2D) gr);
-
+		Iterator<ShapeFactory> it = list.iterator();
+		while (it.hasNext()) {
+			ShapeFactory s = it.next();
+			if (s != null) {
+				s.draw((Graphics2D) gr);
+			}
 		}
 	}
 }
