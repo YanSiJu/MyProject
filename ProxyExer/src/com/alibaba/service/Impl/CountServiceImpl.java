@@ -9,19 +9,19 @@ public class CountServiceImpl implements ICountService {
 	}
 
 	@Override
-	public void queryCount() {
+	public final void queryCount() {
 		System.out.println("查看账户方法...");
 
 	}
 
 	@Override
-	public void updateCount() {
+	public final void updateCount() {
 		System.out.println("修改账户方法...");
 
 	}
 
 	@Override
-	public void deposit() {
+	public final void deposit() {
 		System.out.println("存款方法...");
 	}
 

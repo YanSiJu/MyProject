@@ -53,7 +53,7 @@ class Number{
 	
 	public static synchronized void getOne(){//Number.class
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(0);
 		} catch (InterruptedException e) {
 		}
 		

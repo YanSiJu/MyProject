@@ -20,7 +20,7 @@ public class StandardStream {
 
 	@Test
 	public void test() {
-		
+
 		System.out.println("System.in:" + System.in + "\n");
 		System.err.println("System.in:" + System.in + "\n");
 		System.out.println("System.out:" + System.out + "\n");
@@ -89,13 +89,13 @@ public class StandardStream {
 		FileInputStream fis = null;
 		BufferedInputStream bis = null;
 		Scanner sc = null;
-		System.out.println("in:" + System.in + "\n\n");
+		System.out.println("System.in:" + System.in + "\n\n");
 		try {
 			fis = new FileInputStream("dbcp.txt");
 			bis = new BufferedInputStream(fis);
 
 			System.setIn(bis);
-			System.out.println("System.in:" + System.in + "\n\n");
+			System.out.println("System.in:" + System.in + "\nbis:" + bis + "\n");
 			sc = new Scanner(System.in);
 			while (sc.hasNext()) {
 				System.out.println(sc.next());

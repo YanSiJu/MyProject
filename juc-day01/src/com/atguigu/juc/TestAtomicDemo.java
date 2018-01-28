@@ -1,5 +1,7 @@
 package com.atguigu.juc;
 
+import java.util.HashMap;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /*
@@ -25,34 +27,56 @@ public class TestAtomicDemo {
 
 	public static void main(String[] args) {
 		AtomicDemo ad = new AtomicDemo();
-		
+
 		for (int i = 0; i < 10; i++) {
 			new Thread(ad).start();
 		}
 	}
-	
+
 }
 
-class AtomicDemo implements Runnable{
-	
-//	private volatile int serialNumber = 0;
-	
+class AtomicDemo implements Runnable {
+
+	// private volatile int serialNumber = 0;
+
+	public static void main(String[] args) {
+		final HashMap<String, String> map = new HashMap<String, String>(2);
+		Thread t = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for (int i = 0; i < 10000; i++) {
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							map.put(UUID.randomUUID().toString(), "");
+						}
+					}, "ftf" + i).start();
+				}
+			}
+		}, "ftf");
+		t.start();
+		try {
+			t.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private AtomicInteger serialNumber = new AtomicInteger(0);
 
 	@Override
 	public void run() {
-		
+
 		try {
 			Thread.sleep(200);
 		} catch (InterruptedException e) {
 		}
-		
+
 		System.out.println(getSerialNumber());
 	}
-	
-	public int getSerialNumber(){
+
+	public int getSerialNumber() {
 		return serialNumber.getAndIncrement();
 	}
-	
-	
+
 }

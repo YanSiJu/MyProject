@@ -14,18 +14,17 @@ public class TestObjectInputOutputStream {
 	public void testObjectInputStream() {
 		ObjectInputStream ois = null;
 		try {
-			ois = new ObjectInputStream(new FileInputStream(
-					"person.txt"));
-			
-			Person p1 = (Person)ois.readObject();
+			ois = new ObjectInputStream(new FileInputStream("person.txt"));
+
+			Person p1 = (Person) ois.readObject();
 			System.out.println(p1);
-			Person p2 = (Person)ois.readObject();
+			Person p2 = (Person) ois.readObject();
 			System.out.println(p2);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
-			if(ois != null){
-				
+		} finally {
+			if (ois != null) {
+
 				try {
 					ois.close();
 				} catch (IOException e) {
@@ -34,15 +33,15 @@ public class TestObjectInputOutputStream {
 				}
 			}
 		}
-		
+
 	}
 
 	// 对象的序列化过程：将内存中的对象通过ObjectOutputStream转换为二进制流，存储在硬盘文件中
 	@Test
 	public void testObjectOutputStream() {
 
-		Person p1 = new Person("小米", 23,new Pet("花花"));
-		Person p2 = new Person("红米", 21,new Pet("小花"));
+		Person p1 = new Person("小米", 23, new Pet("花花"));
+		Person p2 = new Person("红米", 21, new Pet("小花"));
 
 		ObjectOutputStream oos = null;
 		try {
@@ -70,40 +69,43 @@ public class TestObjectInputOutputStream {
 }
 
 /*
- * 要实现序列化的类： 1.要求此类是可序列化的：实现Serializable接口
- * 2.要求类的属性同样的要实现Serializable接口
+ * 要实现序列化的类： 1.要求此类是可序列化的：实现Serializable接口 2.要求类的属性同样的要实现Serializable接口
  * 3.提供一个版本号：private static final long serialVersionUID
  * 4.使用static或transient修饰的属性，不可实现序列化
  */
 class Person implements Serializable {
-	private static final long serialVersionUID = 23425124521L;
-	static String name;
+	private static final long serialVersionUID = 1L;
+	private String name;
 	transient Integer age;
 	Pet pet;
-	public Person(String name, Integer age,Pet pet) {
-		Person.name = name;
+
+	public Person(String name, Integer age, Pet pet) {
+		this.name = name;
 		this.age = age;
 		this.pet = pet;
 	}
+
 	@Override
 	public String toString() {
 		return "Person [name=" + name + ", age=" + age + ", pet=" + pet + "]";
 	}
 
-	
 }
-class Pet implements Serializable{
+
+class Pet implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	String name;
-	public Pet(String name){
+
+	public Pet(String name) {
 		this.name = name;
 	}
+
 	@Override
 	public String toString() {
 		return "Pet [name=" + name + "]";
 	}
-	
+
 }

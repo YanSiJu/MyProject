@@ -25,7 +25,7 @@ public class LocalDateTimeTest {
 
 		// Returns time based on system clock zone Clock defaultClock =
 		Clock.systemDefaultZone();
-		System.out.println("Clock : " + clock.toString());
+		System.out.println("Clock : " + clock);
 	}
 
 	@Test

@@ -20,6 +20,7 @@ public class TestCountDownLatch {
 		try {
 			latch.await();
 		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 
 		long end = System.currentTimeMillis();
