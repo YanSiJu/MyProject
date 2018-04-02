@@ -1,4 +1,4 @@
-package cn.csu.servlet;
+package com.ascent.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
