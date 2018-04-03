@@ -33,7 +33,7 @@ public class FindAllUserServlet extends HttpServlet {
 		UserManagerDAO userDAO = new UserManagerDAO();
 		List<User> users = userDAO.queryAllUser();
 		request.setAttribute("users", users);
-		String url = null;
+		String url = "DisplayUsers.jsp";
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<!-- <a href="Welcome">Welcome</a> -->
+	<a href="FindAllUserServlet">查询所有用户信息</a>
 	<form action="DispatchServlet" method="post">
 	姓名:<input type="text" name="userName">
 	<br>

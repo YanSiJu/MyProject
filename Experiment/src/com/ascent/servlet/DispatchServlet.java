@@ -4,7 +4,6 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DispatchServlet
  */
-@WebServlet("/DispatchServlet")
+
 public class DispatchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -21,6 +20,7 @@ public class DispatchServlet extends HttpServlet {
 	 */
 	public DispatchServlet() {
 		super();
+		System.out.println("----->Dispatcher");
 	}
 
 	/**
@@ -35,13 +35,7 @@ public class DispatchServlet extends HttpServlet {
 	public void destroy() {
 	}
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-	}
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -50,6 +44,7 @@ public class DispatchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("doGet");
 		doPost(request, response);
 	}
 
@@ -59,7 +54,9 @@ public class DispatchServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("doPost");
 		String userName = request.getParameter("userName");
+		System.out.println(userName + "   Dispatcher");
 		String url = null;
 		if ("admin".equals(userName)) {
 			url = "adminResult.html";
@@ -69,6 +66,7 @@ public class DispatchServlet extends HttpServlet {
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
+
 	}
 
 }

@@ -5,16 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>用户信息</title>
 </head>
 <body>
 
 
 
-	<table>
+	<table  border="2">
 		<tr>
-			<td>编号</td>
-			<td>姓名</td>
+			<td>编&emsp;&emsp;号</td>
+			<td>姓&emsp;&emsp;名</td>
 			<td>公司名称</td>
 			<td>公司地址</td>
 			<td>电话号码</td>
@@ -28,7 +28,7 @@
 				<td>${user.companyName}</td>
 				<td>${user.companyAddress}</td>
 				<td>${user.tel}</td>
-				<td>${tel.email}</td>
+				<td>${user.email}</td>
 			</tr>
 		</c:forEach>
 	</table>

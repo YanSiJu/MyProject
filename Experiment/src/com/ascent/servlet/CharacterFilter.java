@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-
 /**
  * Servlet Filter implementation class CharacterFilter
  */
@@ -16,43 +15,36 @@ import javax.servlet.ServletResponse;
 public class CharacterFilter implements Filter {
 
 	/**
-     * Default constructor. 
-     */
-	private String  enCoding;
-    public CharacterFilter() {
-        // TODO Auto-generated constructor stub
-    	
-    	System.out.println("Filter's  constructor....");
-    	
-    }
+	 * Default constructor.
+	 */
+	private String enCoding;
+
+	public CharacterFilter() {
+
+	}
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
-		
-		System.out.println("Filter's  destroy....");
 		this.enCoding = null;
-		
+
 	}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 
 		// pass the request along the filter chain
-		if(this.enCoding != null) {
-			
+		if (this.enCoding != null) {
+
 			request.setCharacterEncoding(enCoding);
-			response.setContentType("text/html;charset="+enCoding);
+			response.setContentType("text/html;charset=" + enCoding);
 		}
-		System.out.println("Filter's  doFilter....");
 		chain.doFilter(request, response);
-		
+
 	}
 
 	/**
@@ -60,8 +52,7 @@ public class CharacterFilter implements Filter {
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
-		
+
 		this.enCoding = fConfig.getInitParameter("enCoding");
-		System.out.println("Filter's  init....");
 	}
 }
