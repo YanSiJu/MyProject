@@ -1,0 +1,70 @@
+/* CSS Document */
+#head{
+	width: 100%;
+	}
+#head img{
+	width: 100%;
+	height: 100%;
+}
+/*
+#content{
+	padding: 0px;
+	margin: 0px;
+}
+*/
+#footer{
+	height:50px;
+	width: 100%;
+	float: left;
+	text-align: center;
+	background-color:#578BB8;
+}
+#menu{
+	height:30px;
+	background-color:#578BB8;
+}
+#menu li{
+	float: left;
+	list-style-type: none;
+	font-size: 20px;
+	color: white;
+	border-right: 1px solid white;
+	padding: 0px 10px;
+	margin: 0px;
+}
+body,div,ul{
+	margin: 0px;
+	padding: 0px;
+}
+#text{
+	float: left;
+	padding: 0 5%;
+}
+#txtLeft{
+	width:80%;
+	float:left;
+/*	background-color:grey;*/
+}
+
+#txtRight{
+	width:20%;
+	float:right;
+/*	background-color:grey;*/
+}
+#txtRight li{
+	list-style-type: none;
+}	
+#txtLeftRight{
+	width:60%;
+	float:right;
+	padding: 0 5% 0 0;
+/*	margin: 0 5%;*/
+/*	background-color:blue;*/
+}
+#loginbox{
+	padding: 10px 0px;
+	margin: 20px 0px;
+	width: 240px;
+	border: 1px solid black;
+}
+
