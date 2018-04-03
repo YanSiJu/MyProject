@@ -116,7 +116,6 @@ public class DataAccess {
 				}
 				list.add(entity);
 			}
-
 		} catch (SQLException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}finally {

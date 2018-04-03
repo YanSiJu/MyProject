@@ -61,7 +61,7 @@ public class DispatchServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String userName = request.getParameter("userName");
 		String url = null;
-		if (userName.equals("admin")) {
+		if ("admin".equals(userName)) {
 			url = "adminResult.html";
 		} else {
 			url = "result.html";

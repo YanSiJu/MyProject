@@ -2,8 +2,6 @@ package com.ascent.servlet;
 
 import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,8 +34,7 @@ public class FindAllUserServlet extends HttpServlet {
 		List<User> users = userDAO.queryAllUser();
 		request.setAttribute("users", users);
 		String url = null;
-		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-		dispatcher.forward(request, response);
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	/**
