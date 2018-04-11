@@ -6,12 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户信息</title>
+<style type="text/css">
+table {
+	border-collapse: collapse;
+}
+</style>
 </head>
 <body>
 
 
 
-	<table  border="2">
+	<table border="1">
 		<tr>
 			<td>编&emsp;&emsp;号</td>
 			<td>姓&emsp;&emsp;名</td>

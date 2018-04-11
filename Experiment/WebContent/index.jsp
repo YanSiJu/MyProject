@@ -9,7 +9,7 @@
 <body>
 
 	<a href="FindAllUserServlet">查询所有用户信息</a>
-	<form action="DispatchServlet" method="post">
+	<form action="WelcomeServlet" method="post">
 	姓名:<input type="text" name="userName">
 	<br>
 	密码:<input  type="password"  name="password">
