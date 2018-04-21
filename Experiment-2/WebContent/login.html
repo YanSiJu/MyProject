@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="css/login.css" />
+<meta charset="UTF-8">
+<title>用户登录</title>
+</head>
+
+<body>
+	<!--<div id="head">
+			<a href="#"><big>首&nbsp;页&emsp;&emsp;</big></a>
+			<a href="#"><big>注&nbsp;册</big></a>
+		</div>-->
+	<div id="div_1">
+	
+		<form action="${pageContext.request.contextPath}/Login" method="post">
+			<table>
+				<tr>
+					<td>用户名:<input type="text" name="name"
+						style="width: 188px; border: solid grey; margin-left: 5px; margin-right: 30px;" />
+					</td>
+				</tr>
+
+				<tr>
+
+					<td>密&nbsp;&nbsp;&nbsp;&nbsp;码:<input type="text" name="name"
+						style="width: 188px; border: solid grey; margin-top: 30px; margin-left: 5px; margin-right: 30px;" />
+					</td>
+				</tr>
+
+				<!-- 
+					<tr>
+						<td><br />用户角色:
+							<select name="identify"  style="width: 82px;">
+								<option value="airlineCompany">航空公司</option>
+								<option value="passenger">旅客</option>
+								<option value="travelAgency">旅行社</option>
+							</select>
+						</td>
+
+					</tr>
+					
+					 -->
+
+				<tr>
+					<td><br />
+					<input type="submit" value="登&emsp;录" id="submit" /></td>
+				</tr>
+
+			</table>
+		</form>
+	</div>
+</body>
+
+</html>
