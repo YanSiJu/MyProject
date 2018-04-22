@@ -3,9 +3,12 @@ package com.ascent.servlet;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.ascent.dao.UserDao;
 import com.ascent.entity.User;
 
@@ -49,6 +52,33 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			response.sendRedirect("/login.html");
 		}
+	}
+
+	public void dealWithVisitCountWithSession(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		Integer visitCount = (Integer) session.getAttribute("visitCount");
+		if (visitCount == null) {
+			session.setAttribute("visitCount", Integer.valueOf(1));
+		} else {
+			session.setAttribute("visitCount", ++visitCount);
+		}
+	}
+
+	public void dealWithVisitCountWithCookie(HttpServletRequest request, HttpServletResponse response) {
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if ("visitCount".equals(cookie.getName())) {
+					Integer count = Integer.valueOf(cookie.getValue());
+					cookie.setValue(String.valueOf(++count));
+					return;
+				}
+			}
+		}
+		Cookie cookie = new Cookie("visitCount", String.valueOf(1));
+		cookie.setMaxAge(60 * 60);
+		response.addCookie(cookie);
+		response.setContentType("text/html;charset=UTF-8");
 	}
 
 }

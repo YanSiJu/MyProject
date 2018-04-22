@@ -30,7 +30,8 @@ public class LogoutServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getSession().invalidate();
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher(request.getContextPath() + "/index.jsp").forward(request, response);
+
 	}
 
 	/**
