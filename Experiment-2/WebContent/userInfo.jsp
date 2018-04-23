@@ -16,7 +16,7 @@ table {
 </head>
 <body>
 
-	<table style="table-collapse: collapse">
+	<table>
 		<tr>
 			<td>id</td>
 			<td>${userInfo.id }</td>

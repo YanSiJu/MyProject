@@ -10,11 +10,7 @@ public class UserDao extends DataAccess {
 		String sql = "select * from user where name = ? and password = ?";
 		Connection conn = this.getConnection();
 		User user = this.getRecord(clazz, sql, conn, userName, pwd);
-		if (user != null) {
-			return user;
-		} else {
-			return null;
-		}
+		return user;
 	}
 
 }

@@ -9,13 +9,17 @@
 </head>
 <body>
 	<c:if test="${empty userInfo }">
-		您好，您好没有<a href="${pageContext.request.contextPath }/login.html">登录</a>
+		您好，您好没有<a href="${pageContext.request.contextPath }/login.jsp">登录</a>
+		<br>
 		<a href="${pageContext.request.contextPath }/register.html">注册</a>
 	</c:if>
 
 	<c:if test="${not empty userInfo }">
+		您好，这是您第${visitCount }次访问本网站
+		<br>
 		<a href="${pageContext.request.contextPath }/userInfo.jsp">查看个人信息</a>
-		<a href="${pageContext.request.contextPath }/Logout">注销</a>
+		<br>
+		<a href="${pageContext.request.contextPath}/Logout">注销</a>
 	</c:if>
 
 </body>
