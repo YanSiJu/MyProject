@@ -11,7 +11,7 @@
 	<c:if test="${empty userInfo }">
 		您好，您好没有<a href="${pageContext.request.contextPath }/login.jsp">登录</a>
 		<br>
-		<a href="${pageContext.request.contextPath }/register.html">注册</a>
+		<a href="${pageContext.request.contextPath }/register.jsp">注册</a>
 	</c:if>
 
 	<c:if test="${not empty userInfo }">

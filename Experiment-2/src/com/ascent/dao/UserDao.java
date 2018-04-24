@@ -13,4 +13,11 @@ public class UserDao extends DataAccess {
 		return user;
 	}
 
+	public void register(String name, String companyName, String companyAddress, String email, String password,
+			String tel) {
+		String sql = "INSERT INTO  user(name,companyName,companyAddress,email,password,tel) VALUES (0, ?, ?, ?, ?, ?, ?)";
+		Connection conn = this.getConnection();
+		this.update(sql, conn, name, companyName, companyAddress, email, password, tel);
+	}
+
 }
