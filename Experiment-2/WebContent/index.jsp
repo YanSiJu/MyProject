@@ -8,6 +8,7 @@
 <title>ascentWeb</title>
 </head>
 <body>
+
 	<c:if test="${empty userInfo }">
 		您好，您好没有<a href="${pageContext.request.contextPath }/login.jsp">登录</a>
 		<br>

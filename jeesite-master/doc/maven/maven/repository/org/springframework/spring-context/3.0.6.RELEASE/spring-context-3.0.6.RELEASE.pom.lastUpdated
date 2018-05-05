@@ -1,4 +1,0 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Thu Jan 11 18:20:29 CST 2018
-@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1515666029819
-https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.springframework\:spring-context\:pom\:3.0.6.RELEASE from/to central (https\://repo.maven.apache.org/maven2)\: repo.maven.apache.org
