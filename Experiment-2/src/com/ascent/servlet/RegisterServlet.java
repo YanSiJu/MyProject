@@ -48,7 +48,8 @@ public class RegisterServlet extends HttpServlet {
 		String tel = request.getParameter("tel");
 		UserDao dao = new UserDao();
 		dao.register(name, companyName, companyAddress, email, password, tel);
-		request.getRequestDispatcher(request.getContextPath() + "/index.jsp").forward(request, response);
+		System.out.println("register finished!!");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	}
 
