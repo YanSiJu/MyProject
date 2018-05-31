@@ -34,7 +34,7 @@ public class DisplayServlet extends HttpServlet {
 		session.setAttribute("email", request.getParameter("email"));
 		session.setAttribute("password", request.getParameter("password"));
 		session.setAttribute("tel", request.getParameter("tel"));
-		request.getRequestDispatcher(request.getContextPath() + "/info.jsp").forward(request, response);
+		request.getRequestDispatcher("/info.jsp").forward(request, response);
 	}
 
 }
